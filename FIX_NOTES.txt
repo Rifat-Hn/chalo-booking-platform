@@ -1,0 +1,58 @@
+CHALO DATABASE / BOOKING FLOW FIX UPDATE
+========================================
+
+This package is based on the uploaded Mains System Final project ZIP and the
+uploaded chalo_db.sql database export.
+
+Files updated:
+- api/restaurants.php is unchanged; js/restaurant.js now defaults to the
+  earliest actual future reservation date returned by the database and filters
+  slot display by the selected date. The database seed has slots on Jan 10,
+  Jan 18, and Feb 13, 2027, not every day.
+- api/hotels.php now returns actual future hotel stay schedule IDs and matches
+  the selected check-in/check-out dates to those schedules.
+- js/hotel.js now defaults to the earliest actual seeded stay on first load,
+  passes its real schedule_id to the cart, and disables booking when no matching
+  schedule exists.
+- api/movies.php now exposes the seat inventory for a selected showtime.
+- js/movies.js now opens a seat-selection dialog and adds the selected seat
+  (unit_id) to the cart instead of adding a generic movie ticket.
+- api/orders.php now reads the authenticated customer from the same
+  $_SESSION['user'] structure used by includes/session.php and checkout.php.
+  This fixes the order-confirmation "no order found" session mismatch.
+- Removed strict_types declarations from PHP files where leading whitespace or
+  other content could cause PHP 8 to reject the declaration.
+
+INSTALLATION
+------------
+1. Back up your current Chalo folder.
+2. Extract this ZIP.
+3. Copy the contents of "Mains System Final" over your existing XAMPP project
+   folder, preserving config/database.php and your existing assets if you have
+   customized them.
+4. Do not re-import the SQL just to install these PHP/JS changes.
+5. Restart Apache if needed, then hard-refresh the browser (Ctrl+F5).
+
+IMPORTANT DATABASE NOTES
+------------------------
+The supplied database is demo data. It contains restaurant slots and hotel
+stays only on specific dates. The pages now use the actual dates and schedule
+IDs present in the database; they do not invent availability.
+
+The movie seat selector can only display seat rows present in inventory_units
+for the chosen schedule. The uploaded database has a small illustrative set
+of seats per movie schedule, not a full cinema seat map.
+
+PAYMENT
+-------
+The checkout API creates a pending order and initiated payment record. This is
+not a real bKash/Nagad/card gateway integration and must not be represented as
+a successful real payment. The confirmation page displays the order and its
+pending payment status.
+
+VALIDATION
+----------
+All PHP files passed `php -l`.
+All JavaScript files passed `node --check`.
+The project was not executed against a live XAMPP/MariaDB server in this
+environment; verify the workflows locally after copying.

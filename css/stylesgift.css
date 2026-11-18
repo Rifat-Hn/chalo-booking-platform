@@ -1,0 +1,445 @@
+
+/* CHALO — GIFT EXPERIENCE LANDING PAGE
+   Shared navigation and footer remain in stylescommon.css.
+*/
+
+.gift-wrap {
+    width: min(1154px, calc(100% - 64px));
+    margin: 0 auto;
+}
+
+/* Hero */
+
+.gift-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 76px 0;
+    background: linear-gradient(120deg, #f7eee5 0%, #fbf8f2 55%, #f1e8dc 100%);
+}
+
+.gift-hero-inner {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 64px;
+}
+
+.gift-eyebrow {
+    display: inline-block;
+    color: #a76543;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    line-height: 1.5;
+}
+
+.gift-hero h1 {
+    max-width: 620px;
+    margin: 17px 0 20px;
+    color: #173747;
+    font-size: clamp(42px, 5.2vw, 67px);
+    font-weight: 800;
+    letter-spacing: -2.7px;
+    line-height: 1.08;
+}
+
+.gift-hero h1 em {
+    display: block;
+    color: #b16e4b;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    letter-spacing: -1.8px;
+}
+
+.gift-hero-content > p {
+    max-width: 490px;
+    margin: 0;
+    color: #687b83;
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+.gift-hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 29px;
+    padding: 15px 21px;
+    border-radius: 8px;
+    background: #a76543;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.gift-hero-button:hover {
+    background: #8f5134;
+    transform: translateY(-2px);
+}
+
+.gift-hero-button span {
+    font-size: 17px;
+}
+
+.gift-hero-note {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 25px;
+    color: #78868a;
+    font-size: 11px;
+}
+
+.gift-note-icon {
+    color: #b16e4b;
+    font-size: 17px;
+}
+
+.gift-hero-visual {
+    position: relative;
+    min-width: 0;
+}
+
+.gift-hero-visual > img {
+    display: block;
+    width: 100%;
+    height: 365px;
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 22px 55px rgba(47, 48, 40, .16);
+}
+
+.gift-visual-caption {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 17px 19px;
+    border: 1px solid rgba(255, 255, 255, .4);
+    border-radius: 10px;
+    background: rgba(22, 42, 49, .78);
+    color: #fff;
+    backdrop-filter: blur(8px);
+}
+
+.gift-visual-caption span {
+    color: #f1c8a9;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.gift-visual-caption strong {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+/* Experience section */
+
+.gift-experiences {
+    padding: 76px 0 88px;
+    background: #fff;
+}
+
+.gift-section-heading {
+    max-width: 650px;
+    margin: 0 auto 39px;
+    text-align: center;
+}
+
+.gift-section-heading h2 {
+    margin: 10px 0 12px;
+    color: #173747;
+    font-size: clamp(28px, 3.5vw, 39px);
+    font-weight: 800;
+    letter-spacing: -1.2px;
+}
+
+.gift-section-heading p {
+    max-width: 550px;
+    margin: 0 auto;
+    color: #78868e;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* Cards */
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 23px;
+}
+
+.experience-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #e8e9e5;
+    border-radius: 13px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    box-shadow: 0 5px 20px rgba(20, 47, 61, .035);
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+a.experience-card:hover {
+    transform: translateY(-5px);
+    border-color: #d8b59e;
+    box-shadow: 0 17px 35px rgba(20, 47, 61, .11);
+}
+
+a.experience-card:focus-visible {
+    outline: 3px solid #b16e4b;
+    outline-offset: 4px;
+}
+
+.experience-image {
+    position: relative;
+    height: 205px;
+    overflow: hidden;
+    background: #f1ece5;
+}
+
+.experience-image > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+a.experience-card:hover .experience-image > img {
+    transform: scale(1.045);
+}
+
+.experience-number {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    display: grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 50%;
+    background: rgba(20, 47, 61, .68);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    backdrop-filter: blur(5px);
+}
+
+.experience-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 21px 21px 22px;
+}
+
+.experience-category {
+    color: #a76543;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.experience-content h3 {
+    margin: 10px 0 8px;
+    color: #173747;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -.45px;
+    line-height: 1.35;
+}
+
+.experience-content p {
+    margin: 0 0 19px;
+    color: #7a878d;
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+.experience-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: auto;
+    color: #0879bd;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.experience-link span {
+    font-size: 16px;
+    transition: transform .2s ease;
+}
+
+a.experience-card:hover .experience-link span {
+    transform: translateX(4px);
+}
+
+/* Coming soon card */
+
+.experience-card-disabled {
+    opacity: .83;
+    cursor: default;
+}
+
+.experience-card-disabled .experience-image > img {
+    padding: 38px;
+    object-fit: contain;
+}
+
+.coming-soon-label {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    background: #173747;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.experience-link-disabled {
+    color: #929b9e;
+}
+
+/* Bottom information strip */
+
+.gift-bottom {
+    padding: 54px 0;
+    background: #f6f1e9;
+}
+
+.gift-bottom-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.gift-bottom h2 {
+    margin: 11px 0 0;
+    color: #173747;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.gift-bottom-inner > p {
+    max-width: 480px;
+    margin: 0;
+    color: #718087;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* Responsive layout */
+
+@media (max-width: 900px) {
+    .gift-hero-inner {
+        gap: 35px;
+    }
+
+    .gift-hero-visual > img {
+        height: 315px;
+    }
+
+    .experience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .gift-wrap {
+        width: calc(100% - 36px);
+    }
+
+    .gift-hero {
+        padding: 53px 0;
+    }
+
+    .gift-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .gift-hero h1 {
+        font-size: clamp(39px, 10vw, 54px);
+        letter-spacing: -1.8px;
+    }
+
+    .gift-hero-visual > img {
+        height: 280px;
+    }
+
+    .gift-experiences {
+        padding: 58px 0 65px;
+    }
+
+    .experience-grid {
+        gap: 15px;
+    }
+
+    .experience-image {
+        height: 165px;
+    }
+
+    .experience-content {
+        padding: 17px 15px 18px;
+    }
+
+    .experience-content h3 {
+        font-size: 16px;
+    }
+
+    .gift-bottom-inner {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+
+@media (max-width: 440px) {
+    .gift-wrap {
+        width: calc(100% - 28px);
+    }
+
+    .experience-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .experience-image {
+        height: 205px;
+    }
+
+    .experience-content {
+        padding: 19px;
+    }
+
+    .experience-content h3 {
+        font-size: 19px;
+    }
+
+    .gift-section-heading h2 {
+        font-size: 28px;
+    }
+
+    .gift-hero-visual > img {
+        height: 230px;
+    }
+}

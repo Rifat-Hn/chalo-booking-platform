@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search bus tickets, compare operators and select your seats with Chalo.">
+  <title>Bus Tickets | Chalo</title>
+  <link rel="stylesheet" href="css/stylescommon.css">
+  <link rel="stylesheet" href="css/stylesbus.css">
+  <script src="js/card-covers.js" defer></script>
+<script src="js/cart-api.js" defer></script>
+  <script src="js/bus.js" defer></script>
+  <script src="js/auth-nav.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand"><img src="assets/chalo-logo.png" class="brand-logo" alt="Chalo"><span>চলো</span></a>
+    <nav class="main-nav"><a href="index.html">Home</a><a href="gift-booking.html">Gift</a><a href="index.html#about">About</a></nav>
+    <div class="header-actions"><a href="cart.html" class="login-link">
+      Cart
+      <span id="headerCartCount">0</span>
+  </a><a href="login.html" class="login-link">Log in</a><a href="register.html" class="register-btn">Register</a></div>
+  </div>
+</header>
+
+<main>
+  <section class="bus-search-hero">
+    <div class="bus-container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Bus tickets</div>
+      <div class="hero-copy"><div><span class="eyebrow">TRAVEL YOUR WAY</span><h1>Find your bus. Own the journey.</h1><p>Compare bus operators, departure times, fares and available seats.</p></div><img src="assets/icons/bus.png" alt="" class="bus-hero-icon"></div>
+      <div class="search-shell">
+        <nav class="category-tabs" aria-label="Travel categories">
+          <a class="active" href="bus.html">Bus</a><a href="train.html">Train</a><a href="ferry.html">River Ferries</a><a href="hotel.html">Hotels</a><a href="restaurant.html">Restaurants</a><a href="movies.html">Movies</a>
+        </nav>
+        <form id="searchForm" class="bus-search-form">
+          <label class="search-field"><span>FROM</span><select id="from" name="from"><option value="Dhaka">Dhaka</option><option>Chattogram</option><option>Sylhet</option><option>Rajshahi</option><option>Khulna</option><option>Barishal</option><option>Rangpur</option></select></label>
+          <button class="swap-btn" id="swapRoute" type="button" aria-label="Swap source and destination">⇄</button>
+          <label class="search-field"><span>TO</span><select id="to" name="to"><option>Cox's Bazar</option><option>Chattogram</option><option>Sylhet</option><option>Dhaka</option><option>Rajshahi</option><option>Khulna</option><option>Rangpur</option></select></label>
+          <label class="search-field"><span>JOURNEY DATE</span><input id="date" name="date" type="date" required></label>
+          <label class="search-field passenger-field"><span>PASSENGERS</span><select id="passengers" name="passengers"><option value="1">1 Passenger</option><option value="2">2 Passengers</option><option value="3">3 Passengers</option><option value="4">4 Passengers</option><option value="5">5 Passengers</option></select></label>
+          <button class="search-btn" type="submit"><span>⌕</span> SEARCH BUSES</button>
+        </form>
+        <p id="searchMessage" class="search-message" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="results-section">
+    <div class="bus-container">
+      <div class="demo-notice">ⓘ Demo preview — operators, fares, ratings and seat availability are sample data. Live booking and payment are not connected.</div>
+      <div class="results-topline">
+        <div><h2 id="resultHeading">Available buses</h2><p id="resultCount">Showing 6 buses</p></div>
+        <label class="sort-control">Sort by <select id="sortBy"><option value="departure">Departure</option><option value="price-low">Lowest fare</option><option value="price-high">Highest fare</option><option value="rating">Rating</option></select></label>
+      </div>
+      <div class="date-strip" id="dateStrip" aria-label="Choose travel date"></div>
+      <div class="results-layout">
+        <aside class="filter-panel">
+          <div class="filter-title"><h3>Filters</h3><button id="resetFilters" type="button">Reset all</button></div>
+          <div class="filter-group"><div class="filter-group-title"><h4>DEPARTURE TIME</h4><button data-reset="departure">Reset</button></div>
+            <label><input type="checkbox" name="departure" value="morning"> 6am – 12 noon <small>(2)</small></label>
+            <label><input type="checkbox" name="departure" value="afternoon"> 12 noon – 6pm <small>(2)</small></label>
+            <label><input type="checkbox" name="departure" value="evening"> 6pm – 12 midnight <small>(2)</small></label>
+          </div>
+          <div class="filter-group"><div class="filter-group-title"><h4>BUS TYPES</h4><button data-reset="type">Reset</button></div>
+            <label><input type="checkbox" name="type" value="AC"> AC</label>
+            <label><input type="checkbox" name="type" value="Non-AC"> Non AC</label>
+            <label><input type="checkbox" name="type" value="Sleeper"> Sleeper</label>
+            <label><input type="checkbox" name="type" value="Seater"> Seater</label>
+          </div>
+          <div class="filter-group"><div class="filter-group-title"><h4>SEAT AVAILABILITY</h4><button data-reset="seats">Reset</button></div>
+            <label><input type="checkbox" name="seats" value="available"> Available seats only</label>
+            <label><input type="checkbox" name="seats" value="few"> Few seats left</label>
+          </div>
+          <div class="filter-group"><div class="filter-group-title"><h4>OPERATOR</h4><button data-reset="operator">Reset</button></div>
+            <label><input type="checkbox" name="operator" value="Green Line"> Green Line</label>
+            <label><input type="checkbox" name="operator" value="Hanif"> Hanif</label>
+            <label><input type="checkbox" name="operator" value="Shohagh"> Shohagh</label>
+            <label><input type="checkbox" name="operator" value="Ena"> Ena</label>
+          </div>
+          <label class="keyword-filter">SEARCH OPERATOR<input id="keyword" type="search" placeholder="Enter operator name"></label>
+        </aside>
+        <div class="bus-results-column">
+          <div id="resultsList" class="bus-results-list">
+            <article class="bus-result-card" data-name="Green Line Paribahan" data-type="AC Sleeper" data-price="1800" data-rating="4.8" data-departure="09:00" data-period="morning" data-seats="18" data-operator="Green Line">
+              <div class="operator-mark green">GL</div><div class="bus-info"><div class="operator-line"><h3>Green Line Paribahan</h3><span class="rating">★ 4.8 / 5</span><span class="rating-count">124 ratings</span></div><p class="bus-type">AC Sleeper (2+1) · 18 seats left · Wi-Fi · Charging</p><div class="journey-line"><div><strong>09:00 AM</strong><small class="journey-date">Today</small><small class="place-label from-place">Dhaka</small></div><div class="journey-duration"><span></span><small>8 hrs 30 mins</small><span></span></div><div><strong>05:30 PM</strong><small class="journey-date">Today</small><small class="place-label to-place">Cox's Bazar</small></div></div><div class="bus-card-links"><span>Photos</span><span>Amenities</span><span>Boarding points</span><span>Reviews</span><span>Policies</span></div></div><div class="fare-panel"><small>Ticket fare</small><strong>৳1,800</strong><button class="select-seat-btn" type="button">SELECT SEATS</button></div>
+            </article>
+            <article class="bus-result-card" data-name="Hanif Enterprise" data-type="AC Seater" data-price="1200" data-rating="4.5" data-departure="12:15" data-period="afternoon" data-seats="5" data-operator="Hanif">
+              <div class="operator-mark red">H</div><div class="bus-info"><div class="operator-line"><h3>Hanif Enterprise</h3><span class="rating">★ 4.5 / 5</span><span class="rating-count">98 ratings</span></div><p class="bus-type">AC Seater (2+2) · 5 seats left · Charging</p><div class="journey-line"><div><strong>12:15 PM</strong><small class="journey-date">Today</small><small class="place-label from-place">Dhaka</small></div><div class="journey-duration"><span></span><small>7 hrs 45 mins</small><span></span></div><div><strong>08:00 PM</strong><small class="journey-date">Today</small><small class="place-label to-place">Cox's Bazar</small></div></div><div class="bus-card-links"><span>Photos</span><span>Amenities</span><span>Boarding points</span><span>Reviews</span><span>Policies</span></div></div><div class="fare-panel"><small>Ticket fare</small><strong>৳1,200</strong><button class="select-seat-btn" type="button">SELECT SEATS</button><em>Only 5 seats left</em></div>
+            </article>
+            <article class="bus-result-card" data-name="Shohagh Paribahan" data-type="AC Seater" data-price="1100" data-rating="4.4" data-departure="06:30" data-period="morning" data-seats="22" data-operator="Shohagh">
+              <div class="operator-mark blue">SP</div><div class="bus-info"><div class="operator-line"><h3>Shohagh Paribahan</h3><span class="rating">★ 4.4 / 5</span><span class="rating-count">76 ratings</span></div><p class="bus-type">AC Seater (2+2) · 22 seats left · AC · Charging</p><div class="journey-line"><div><strong>06:30 AM</strong><small class="journey-date">Today</small><small class="place-label from-place">Dhaka</small></div><div class="journey-duration"><span></span><small>8 hrs 10 mins</small><span></span></div><div><strong>02:40 PM</strong><small class="journey-date">Today</small><small class="place-label to-place">Cox's Bazar</small></div></div><div class="bus-card-links"><span>Photos</span><span>Amenities</span><span>Boarding points</span><span>Reviews</span><span>Policies</span></div></div><div class="fare-panel"><small>Ticket fare</small><strong>৳1,100</strong><button class="select-seat-btn" type="button">SELECT SEATS</button></div>
+            </article>
+            <article class="bus-result-card" data-name="Ena Transport" data-type="Non-AC Seater" data-price="750" data-rating="4.2" data-departure="15:00" data-period="afternoon" data-seats="30" data-operator="Ena">
+              <div class="operator-mark orange">E</div><div class="bus-info"><div class="operator-line"><h3>Ena Transport</h3><span class="rating">★ 4.2 / 5</span><span class="rating-count">63 ratings</span></div><p class="bus-type">Non-AC Seater (2+2) · 30 seats left</p><div class="journey-line"><div><strong>03:00 PM</strong><small class="journey-date">Today</small><small class="place-label from-place">Dhaka</small></div><div class="journey-duration"><span></span><small>9 hrs 00 mins</small><span></span></div><div><strong>12:00 AM</strong><small class="journey-date">Tomorrow</small><small class="place-label to-place">Cox's Bazar</small></div></div><div class="bus-card-links"><span>Photos</span><span>Amenities</span><span>Boarding points</span><span>Reviews</span><span>Policies</span></div></div><div class="fare-panel"><small>Ticket fare</small><strong>৳750</strong><button class="select-seat-btn" type="button">SELECT SEATS</button></div>
+            </article>
+            <article class="bus-result-card" data-name="Green Line Paribahan" data-type="AC Seater" data-price="1500" data-rating="4.7" data-departure="20:30" data-period="evening" data-seats="12" data-operator="Green Line">
+              <div class="operator-mark green">GL</div><div class="bus-info"><div class="operator-line"><h3>Green Line Paribahan</h3><span class="rating">★ 4.7 / 5</span><span class="rating-count">112 ratings</span></div><p class="bus-type">AC Seater (2+2) · 12 seats left · Wi-Fi</p><div class="journey-line"><div><strong>08:30 PM</strong><small class="journey-date">Today</small><small class="place-label from-place">Dhaka</small></div><div class="journey-duration"><span></span><small>8 hrs 20 mins</small><span></span></div><div><strong>04:50 AM</strong><small class="journey-date">Tomorrow</small><small class="place-label to-place">Cox's Bazar</small></div></div><div class="bus-card-links"><span>Photos</span><span>Amenities</span><span>Boarding points</span><span>Reviews</span><span>Policies</span></div></div><div class="fare-panel"><small>Ticket fare</small><strong>৳1,500</strong><button class="select-seat-btn" type="button">SELECT SEATS</button></div>
+            </article>
+            <article class="bus-result-card" data-name="Hanif Enterprise" data-type="Non-AC Sleeper" data-price="900" data-rating="4.1" data-departure="22:00" data-period="evening" data-seats="3" data-operator="Hanif">
+              <div class="operator-mark red">H</div><div class="bus-info"><div class="operator-line"><h3>Hanif Enterprise</h3><span class="rating">★ 4.1 / 5</span><span class="rating-count">54 ratings</span></div><p class="bus-type">Non-AC Sleeper · 3 seats left</p><div class="journey-line"><div><strong>10:00 PM</strong><small class="journey-date">Today</small><small class="place-label from-place">Dhaka</small></div><div class="journey-duration"><span></span><small>9 hrs 15 mins</small><span></span></div><div><strong>07:15 AM</strong><small class="journey-date">Tomorrow</small><small class="place-label to-place">Cox's Bazar</small></div></div><div class="bus-card-links"><span>Photos</span><span>Amenities</span><span>Boarding points</span><span>Reviews</span><span>Policies</span></div></div><div class="fare-panel"><small>Ticket fare</small><strong>৳900</strong><button class="select-seat-btn" type="button">SELECT SEATS</button><em>Only 3 seats left</em></div>
+            </article>
+          </div>
+          <p id="emptyState" class="empty-state" hidden>No buses found. Please change your filters or search route.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="seat-modal" id="seatModal" aria-hidden="true">
+  <div class="seat-dialog" role="dialog" aria-modal="true" aria-labelledby="seatTitle">
+    <button class="modal-close" id="closeSeatModal" type="button" aria-label="Close">×</button>
+    <div class="seat-modal-head"><div><span class="eyebrow">CHOOSE YOUR SEAT</span><h2 id="seatTitle">Select seats</h2><p id="modalBusName">Bus operator</p></div><div class="modal-fare"><small>Per seat</small><strong id="modalFare">৳0</strong></div></div>
+    <div class="seat-legend"><span><i class="seat-dot available"></i> Available</span><span><i class="seat-dot selected"></i> Selected</span><span><i class="seat-dot booked"></i> Booked</span></div>
+    <div class="bus-layout">
+      <div class="driver-row"><span>FRONT</span><span class="steering">◉</span></div>
+      <div class="seat-grid" id="seatGrid"></div>
+      <div class="rear-label">REAR</div>
+    </div>
+    <div class="seat-summary"><div><small>Selected seats</small><strong id="selectedSeatNames">None</strong></div><div><small>Total amount</small><strong id="selectedTotal">৳0</strong></div></div>
+    <button class="continue-btn" id="continueBooking" type="button" disabled>Continue to booking →</button>
+    <p class="modal-demo-note">Demo only: seat selection is stored in this browser. No payment or confirmed booking is made.</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="brand footer-logo" href="index.html"><img src="assets/chalo-logo.png" class="brand-logo" alt="">চলো</a><p>Go somewhere. Do something. Make it a little more you.</p></div>
+    <div class="footer-column"><h3>Explore</h3><a href="bus.html">Bus</a><a href="train.html">Train</a><a href="ferry.html">River Ferries</a><a href="hotel.html">Hotels</a><a href="restaurant.html">Restaurants</a></div>
+    <div class="footer-column"><h3>Chalo</h3><a href="gift-booking.html">Gift a plan</a><a href="index.html#about">About us</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Chalo. All rights reserved.</span><span>BDT ৳</span></div>
+</footer>
+</body>
+</html>

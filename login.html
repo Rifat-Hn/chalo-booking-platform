@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to Chalo and keep your bookings, e-tickets and gift vouchers together.">
+  <title>Log in | Chalo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/stylescommon.css">
+  <link rel="stylesheet" href="css/styleslogin.css"><script src="js/auth-nav.js" defer></script><script src="js/login.js" defer></script>
+</head>
+<body>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="index.html" aria-label="Chalo home"><img src="assets/chalo-logo.png" alt="" class="brand-logo" onerror="this.style.display='none'"><span>চলো <small>Chalo</small></span></a>
+  <nav class="main-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="gift-booking.html">Gift</a><a href="index.html#about">About</a></nav>
+  <div class="header-actions"><a class="login-link active" href="login.html">Log in</a><a class="register-btn" href="register.html">Register</a></div>
+</div></header>
+<main class="auth-main"><div class="auth-layout">
+  <section class="promo-panel" aria-label="Chalo introduction">
+    <p class="eyebrow"><span aria-hidden="true">✣</span> LESS PLANNING. MORE LIVING.</p>
+    <h1>Big plans.<br>Little escapes.<br><em>All in one place.</em></h1>
+    <p class="promo-description">Your journeys, stays and thoughtful gifts. One account to bring it all together.</p>
+    <div class="gift-promo"><div><h2>A little joy. For you or someone else.</h2><p>A weekend in Cox’s Bazar. A dinner together in Dhaka.</p></div>
+      <a class="gift-image-link" href="gift-booking.html" aria-label="Explore gift booking"><img src="assets/gift-box.png" alt="Gift box" class="gift-image"></a>
+    </div>
+    <div class="feature-note"><span class="feature-mark" aria-hidden="true">✧</span><div><strong>One account. All your plans.</strong><p>Keep tickets, reservations, and confirmations together. Less tab-switching, more looking forward.</p></div></div>
+  </section>
+  <section class="login-card" aria-labelledby="login-title">
+    <p class="card-eyebrow">YOUR NEXT PLAN STARTS HERE</p><h2 id="login-title">Welcome back.</h2>
+    <p class="card-description">Sign in to keep your bookings, e-tickets and gift vouchers in one place.</p>
+    <form id="loginForm" novalidate>
+      <div class="form-group"><label for="identity">Email or phone number <b>*</b></label><div class="input-wrap"><span class="input-symbol" aria-hidden="true">♙</span><input id="identity" name="identity" type="text" placeholder="Enter email or phone number" autocomplete="username" required></div><small class="hint">Use your email or Bangladesh mobile number.</small><small class="error" id="identityError"></small></div>
+      <div class="form-group password-group"><label for="password">Password <b>*</b></label><div class="input-wrap"><span class="input-symbol" aria-hidden="true">▣</span><input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required minlength="6"><button type="button" id="togglePassword" class="show-password" aria-pressed="false">◉ <span>Show</span></button></div><small class="error" id="passwordError"></small></div>
+      <div class="form-options"><label class="remember"><input id="rememberMe" type="checkbox"><span>Remember me</span></label><button type="button" class="text-button" id="forgotPassword">Forgot password?</button></div>
+      <button class="primary-button" type="submit">Sign In <span aria-hidden="true">→</span></button>
+      <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
+    </form>
+    <div class="separator"><span>or continue with</span></div>
+    <button type="button" class="google-button" id="googleButton"><span class="google-g">G</span> Continue with Google</button>
+    <p class="create-account">New here? <a href="register.html">Create an account</a></p>
+    <p class="secure-note"><span aria-hidden="true">⛨</span> Your details stay safe and secure.</p>
+  </section>
+</div></main>
+<footer class="site-footer"><div class="footer-inner">
+  <div class="footer-brand"><a class="brand footer-logo" href="index.html"><img src="assets/chalo-logo.png" alt="" class="brand-logo" onerror="this.style.display='none'"><span>চলো <small>Chalo</small></span></a><p>Go somewhere. Do something. Make it a little more you.</p><div class="social-links"><a href="#instagram" aria-label="Instagram">◎</a><a href="#facebook" aria-label="Facebook">f</a><a href="#youtube" aria-label="YouTube">▷</a></div></div>
+  <div class="footer-column"><h3>Explore</h3><a href="index.html#bus">Bus</a><a href="index.html#train">Train</a><a href="index.html#ferries">River Ferries</a><a href="index.html#hotels">Hotels</a><a href="index.html#restaurants">Restaurants</a><a href="index.html#movies">Movies</a></div>
+  <div class="footer-column"><h3>Chalo</h3><a href="index.html#about">About us</a><a href="index.html#how-it-works">How it works</a><a href="#partners">Our partners</a><a href="#inspiration">Travel inspiration</a><a href="#careers">Careers</a></div>
+  <div class="footer-column"><h3>We’re here to help</h3><a href="#help">Help center</a><a href="#manage-booking">Manage a booking</a><a href="#cancellation">Cancellation policies</a><a href="#contact">Contact us</a><a href="#support">24/7 customer support</a></div>
+</div><div class="footer-bottom"><span>© 2026 Chalo. All rights reserved.</span><div><a href="#privacy">Privacy policy</a><a href="#terms">Terms of service</a><a href="#cookies">Cookies</a></div><label class="language-select">◎ <select aria-label="Language and currency"><option>English · BDT ৳</option><option>বাংলা · BDT ৳</option></select></label></div></footer>
+</body></html>

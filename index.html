@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- SECTION 0: DOCUMENT SETUP -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="চলো – Chalo: book buses, trains, ferries, hotels, restaurants and movies in one place.">
+  <title>চলো – Chalo | All in One Place</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styleshome.css">
+  <script src="js/main.js" defer></script>
+<script src="js/auth-nav.js" defer></script>
+</head>
+<body>
+  <!-- SECTION 1: HEADER / NAVIGATION -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Chalo home">
+        <img src="assets/chalo-logo.png" alt="Chalo logo" class="brand-logo" onerror="this.style.display='none'"><span class="brand-bengali">চলো - Chalo</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav">
+        <a class="active" href="#home">Home</a>
+        <a href="#gift">Gift</a>
+        <a href="#about">About</a>
+      </nav>
+      <div class="header-actions"><a href="login.html" class="login-link">Log in</a><a href="register.html" class="register-btn">Register</a></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION 2: HERO / GIFT BOOKING INTRO -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">✣ LESS PLANNING. MORE LIVING.</p>
+            <h1>Big plans.<br>Little escapes.<br><span>All in one place.</span></h1>
+            <p class="hero-description">From the way you get there to what you do next. Book your journey, your stay, and the moments in between.</p>
+            <div class="rating-proof"><span class="star-bubble">★</span><span><strong>4.9/5 from happy explorers</strong><small>A little adventure. A lot of good reviews.</small></span></div>
+          </div>
+          <div class="hero-gift" aria-label="Gift booking promotion">
+            <a class="gift-illustration" href="gift-booking.html" aria-label="Explore gift booking">
+              <!-- Replace assets/gift-box.png with your own transparent PNG file. -->
+              <img src="assets/gift-box.png" alt="A wrapped gift box" class="gift-image">
+            </a>
+            <a class="gift-callout" href="gift-booking.html">
+              <span><strong>BUY FOR SOMEONE ELSE</strong><small>How about Gift your Mom and Dad a beautiful candle light dinner at a beautiful restaurant?</small></span><b>↗</b>
+            </a>
+          </div>
+        </div>
+
+        <!-- SECTION 3: CATEGORY TABS + SEARCH FORM -->
+        <div class="booking-widget">
+          <div class="booking-tabs" role="tablist" aria-label="Booking type">
+            <button class="booking-tab active" data-category="Bus" role="tab" aria-selected="true"><span>▣</span> Bus</button>
+            <button class="booking-tab" data-category="Train" role="tab" aria-selected="false"><span>♙</span> Train</button>
+            <button class="booking-tab" data-category="River Ferries" role="tab" aria-selected="false"><span>♧</span> River Ferries</button>
+            <button class="booking-tab" data-category="Hotels" role="tab" aria-selected="false"><span>▤</span> Hotels</button>
+            <button class="booking-tab" data-category="Restaurants" role="tab" aria-selected="false"><span>♜</span> Restaurants</button>
+            <button class="booking-tab" data-category="Movies" role="tab" aria-selected="false"><span>▣</span> Movies</button>
+          </div>
+          <form class="booking-form" id="bookingForm">
+            <!-- Transport: Bus / Train / River Ferries -->
+            <div class="search-layout active" data-layout="transport">
+              <label class="booking-field"><span class="field-icon">⌖</span><span class="field-text"><small>FROM</small><select id="fromLocation" aria-label="From location"><option selected>Bashundhara</option><option>Shahbag</option><option>Uttara</option><option>Motijheel</option><option>Gabtoli</option><option>Sayedabad</option><option>Chattogram</option><option>Cox's Bazar</option><option>Sylhet</option></select></span></label>
+              <span class="swap-icon" aria-hidden="true">⇄</span>
+              <label class="booking-field"><span class="field-icon">⌖</span><span class="field-text"><small>TO</small><select id="toLocation" aria-label="To location"><option>Bashundhara</option><option selected>Shahbag</option><option>Uttara</option><option>Motijheel</option><option>Gabtoli</option><option>Sayedabad</option><option>Chattogram</option><option>Cox's Bazar</option><option>Sylhet</option></select></span></label>
+              <label class="booking-field departure-field"><span class="field-icon">▦</span><span class="field-text"><small>DEPARTURE</small><input id="departureDate" type="date" aria-label="Departure date" required></span></label>
+              <label class="booking-field travelers-field"><span class="field-icon">♙</span><span class="field-text"><small>TRAVELERS</small><select id="travelers" aria-label="Travelers"><option>1 adult</option><option>2 adults</option><option>3 adults</option><option>4 adults</option><option>5+ adults</option></select></span></label>
+            </div>
+
+            <!-- Hotels: Check-in / Check-out / Location / Guests -->
+            <div class="search-layout" data-layout="hotels" hidden>
+              <label class="booking-field"><span class="field-icon">▦</span><span class="field-text"><small>CHECK IN</small><input id="checkInDate" type="date" aria-label="Check-in date"></span></label>
+              <label class="booking-field"><span class="field-icon">▦</span><span class="field-text"><small>CHECK OUT</small><input id="checkOutDate" type="date" aria-label="Check-out date"></span></label>
+              <label class="booking-field"><span class="field-icon">⌖</span><span class="field-text"><small>LOCATION</small><select id="hotelLocation" aria-label="Hotel location"><option selected>Dhaka</option><option>Cox's Bazar</option><option>Chattogram</option><option>Sylhet</option><option>Sreemangal</option><option>Bandarban</option></select></span></label>
+              <label class="booking-field"><span class="field-icon">♙</span><span class="field-text"><small>GUESTS</small><select id="hotelGuests" aria-label="Number of guests"><option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ guests</option></select></span></label>
+            </div>
+
+            <!-- Restaurants: From time / To time / Date / Seats -->
+            <div class="search-layout" data-layout="restaurants" hidden>
+              <label class="booking-field"><span class="field-icon">◷</span><span class="field-text"><small>FROM TIME</small><input id="restaurantFromTime" type="time" value="18:00" aria-label="Restaurant from time"></span></label>
+              <label class="booking-field"><span class="field-icon">◷</span><span class="field-text"><small>TO TIME</small><input id="restaurantToTime" type="time" value="20:00" aria-label="Restaurant to time"></span></label>
+              <label class="booking-field"><span class="field-icon">▦</span><span class="field-text"><small>DATE</small><input id="restaurantDate" type="date" aria-label="Restaurant date"></span></label>
+              <label class="booking-field"><span class="field-icon">♙</span><span class="field-text"><small>SEATS</small><select id="restaurantSeats" aria-label="Number of seats"><option>1 seat</option><option selected>2 seats</option><option>3 seats</option><option>4 seats</option><option>5 seats</option><option>6+ seats</option></select></span></label>
+            </div>
+
+            <!-- Movies: Show time range / Date / Seats -->
+            <div class="search-layout" data-layout="movies" hidden>
+              <label class="booking-field"><span class="field-icon">◷</span><span class="field-text"><small>FROM SHOW TIME</small><input id="movieFromTime" type="time" value="14:00" aria-label="From show time"></span></label>
+              <label class="booking-field"><span class="field-icon">◷</span><span class="field-text"><small>TO SHOW TIME</small><input id="movieToTime" type="time" value="22:00" aria-label="To show time"></span></label>
+              <label class="booking-field"><span class="field-icon">▦</span><span class="field-text"><small>DATE</small><input id="movieDate" type="date" aria-label="Movie date"></span></label>
+              <label class="booking-field"><span class="field-icon">♙</span><span class="field-text"><small>SEATS</small><select id="movieSeats" aria-label="Number of seats"><option>1 seat</option><option selected>2 seats</option><option>3 seats</option><option>4 seats</option><option>5 seats</option><option>6+ seats</option></select></span></label>
+            </div>
+            <button class="search-button" type="submit">Search buses <span>→</span></button>
+          </form>
+          <p class="booking-feedback" id="bookingFeedback" aria-live="polite"></p>
+        </div>
+        <div class="trust-strip"><span class="shield">♙</span><span>Secure payments</span><i>·</i><span>No hidden fees</span><i>·</i><span>Instant confirmations</span></div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: BOOKING CATEGORY CARDS -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <p class="section-kicker">ONE PLACE. EVERY POSSIBILITY.</p>
+        <h2 class="section-title">What would you like to book?</h2>
+        <p class="section-intro">The journey, the stay, the dinner, the show. Your plans come together here.</p>
+        <div class="services-grid">
+          <a href="bus.html" class="service-card"><span class="service-icon"><img src="assets/icons/bus.png" alt="Bus icon"></span><span class="service-name">Bus</span><p>Window-seat views, city-to-city value. Find your route and get going.</p><span class="service-link">Find buses <b>→</b></span></a>
+          <a href="train.html" class="service-card"><span class="service-icon"><img src="assets/icons/train.png" alt="Train icon"></span><span class="service-name">Train</span><p>Skip the traffic. Settle in for scenic journeys and easy connections.</p><span class="service-link">Explore trains <b>→</b></span></a>
+          <a href="ferry.html" class="service-card"><span class="service-icon"><img src="assets/icons/ferry.png" alt="River ferry icon"></span><span class="service-name">River Ferries</span><p>Take the scenic route. Cross the river or make the ride the adventure.</p><span class="service-link">Find river ferries <b>→</b></span></a>
+          <a href="hotel.html" class="service-card"><span class="service-icon"><img src="assets/icons/hotel.png" alt="Hotel icon"></span><span class="service-name">Hotels</span><p>A place to put your feet up. Discover stays for every kind of getaway.</p><span class="service-link">Discover hotels <b>→</b></span></a>
+          <a href="restaurant.html" class="service-card"><span class="service-icon"><img src="assets/icons/restaurant.png" alt="Restaurant icon"></span><span class="service-name">Restaurants</span><p>Good food, great company. Save a table at your next favorite spot.</p><span class="service-link">Reserve a table <b>→</b></span></a>
+          <a href="movies.html" class="service-card"><span class="service-icon"><img src="assets/icons/movies.png" alt="Movies icon"></span><span class="service-name">Movies</span><p>Make a night of it. Browse what’s showing and claim the best seats.</p><span class="service-link">Book movie tickets <b>→</b></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: FEATURED DESTINATIONS / EXPERIENCES -->
+    <section class="inspiration-section" id="inspiration">
+      <div class="container">
+        <div class="inspiration-heading">
+          <div><p class="section-kicker">A LITTLE INSPIRATION</p><h2 class="editorial-title">Where will a little curiosity take you?</h2><p class="section-intro">A weekend away or a different kind of Tuesday. Start with somewhere you’ll love.</p></div>
+          <a class="explore-link" href="#services">Explore destinations <span>→</span></a>
+        </div>
+        <div class="destination-grid">
+          <article class="destination-card"><a class="destination-image hotel-image" href="assets/intercontinental.jpe" aria-label="Explore Hotel Intercontinental"></a><div class="destination-content"><h3>Hotel Intercontinental</h3><p>5 star Hotel</p><small>Bus + boutique stays + dining</small><a href="assets/intercontinental.jpe" class="card-arrow" aria-label="Explore Hotel Intercontinental">↗</a></div></article>
+          <article class="destination-card"><a class="destination-image movie-image" href="assets/borbaad.jpe" aria-label="Explore BORBAAD"></a><div class="destination-content"><h3>BORBAAD</h3><p>Now showing</p><small>Cineplex, Blockbuster Cinemas</small><a href="assets/borbaad.jpe" class="card-arrow" aria-label="Explore BORBAAD">↗</a></div></article>
+          <article class="destination-card"><a class="destination-image cox-image" href="assets/coxsbazar.png" aria-label="Explore Cox's Bazaar"></a><div class="destination-content"><h3>Make a day at Cox’s Bazaar</h3><p>Largest Sea Beach in the world</p><small>A memorable vacation</small><a href="assets/coxsbazar.png" class="card-arrow" aria-label="Explore Cox's Bazaar">↗</a></div></article>
+        </div>
+        <p class="price-disclaimer">*A little heads-up: our starting prices are per person or room, subject to date and availability.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 6: TRUST / PLATFORM BENEFITS -->
+    <section class="benefits-section" id="about">
+      <div class="container">
+        <div class="benefits-heading"><h2>Good plans. Better peace of mind.</h2><span class="community-rating">☆ &nbsp;Rated 4.8 by our community</span></div>
+        <div class="benefits-grid">
+          <article class="benefit-card"><span class="benefit-icon">☑</span><h3>One account. All your plans.</h3><p>Keep tickets, reservations, and confirmations together. Less tab-switching, more looking forward.</p></article>
+          <article class="benefit-card"><span class="benefit-icon">♧</span><h3>Book with confidence</h3><p>Trusted partners, secure checkout, and clear pricing. Know exactly what you’re booking before you pay.</p></article>
+          <article class="benefit-card"><span class="benefit-icon">☏</span><h3>Real help, whenever you need it</h3><p>Plans can change. Our friendly support team is here around the clock to help you find your next step.</p></article>
+        </div>
+        <!-- SECTION 7: REGISTRATION CALL TO ACTION -->
+        <div class="signup-banner"><div><h2>Your next great plan starts here.</h2><p>Save your favorites, keep every booking in one place, and make more room for adventure. Your free Chalo account is ready when you are.</p></div><div class="signup-action"><a href="register.html" class="signup-cta">Register for free <span>→</span></a><small>A world of possibilities. No membership fee.</small></div></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SECTION 8: FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand"><a href="#home" class="brand"><span class="brand-symbol">◉</span><span class="brand-bengali">চলো - Chalo</span></a><p>Go somewhere. Do something.<br>Make it a little more you.</p><div class="social-links"><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="YouTube">▻</a></div></div>
+        <div class="footer-column"><h3>Explore</h3><a href="bus.html">Bus</a><a href="train.html">Train</a><a href="ferry.html">River Ferries</a><a href="hotel.html">Hotels</a><a href="restaurant.html">Restaurants</a><a href="movies.html">Movies</a></div>
+        <div class="footer-column"><h3>Chalo</h3><a href="#about">About us</a><a href="#services">How it works</a><a href="#">Our partners</a><a href="#inspiration">Travel inspiration</a><a href="#">Careers</a></div>
+        <div class="footer-column"><h3>We’re here to help</h3><a href="#">Help center</a><a href="bookings.html">Manage a booking</a><a href="#">Cancellation policies</a><a href="#">Contact us</a><a href="#">24/7 customer support</a></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Chalo. All rights reserved.</span><div class="legal-links"><a href="#">Privacy policy</a><a href="#">Terms of service</a><a href="#">Cookies</a></div><button class="locale-button" type="button">◎ &nbsp;English · EUR €⌄</button></div>
+    </div>
+  </footer>
+</body>
+</html>

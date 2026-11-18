@@ -1,0 +1,43 @@
+CHALO CATEGORY PAGES – SETUP (বাংলা)
+====================================
+
+এই প্যাকেজে আলাদা আলাদা UI ফাইল তৈরি করা হয়েছে:
+- bus.html + css/stylesbus.css + js/bus.js
+- ferry.html + css/stylesferry.css + js/ferry.js
+- hotel.html + css/styleshotel.css + js/hotel.js
+- restaurant.html + css/stylesrestaurant.css + js/restaurant.js
+- movies.html + css/stylesmovies.css + js/movies.js
+- gift-booking.html + css/stylesgift.css + js/gift.js
+
+INSTALL
+1. ZIP extract করে আগের Main System folder-এর সঙ্গে merge/replace করো।
+2. XAMPP Control Panel থেকে Apache এবং MySQL চালু করো।
+3. আগের database chalo_db already import করা থাকলে সেটি drop/re-import করবে না।
+4. phpMyAdmin > chalo_db > Import > chalo_category_extension.sql import করো।
+5. Browser-এ http://localhost/Chalo/bus.html খুলে পরীক্ষা করো।
+6. অন্য page: ferry.html, hotel.html, restaurant.html, movies.html, gift-booking.html
+
+DATABASE
+- Existing chalo_database.sql-এ categories, services, schedules, inventory_units,
+  carts, orders, bookings, payments, gift_details ইত্যাদি আছে।
+- chalo_category_extension.sql নতুন category-specific details এবং gift catalog/redemption
+  tables যোগ করে। এটি existing tables drop করে না।
+- Demo seed IDs: Bus 1,2; Ferry 5; Hotel 6,7; Restaurant 8; Movie service 9.
+- Extension SQL-এ দেওয়া data কেবল demo; বাস্তব provider তথ্য দিয়ে update করতে হবে।
+
+CURRENT FUNCTIONALITY / LIMITATION
+- প্রতিটি page-এ responsive UI, search form interaction, sample cards, filters/sort রয়েছে।
+- Bus/Ferry/Hotel/Restaurant/Movie action button এখন browser localStorage demo cart-এ item রাখে।
+- Gift page category/package/recipient/message বেছে voucher preview তৈরি করে localStorage-এ রাখে।
+- এগুলো এখনো PHP/MySQL booking নয়। Real booking করতে login session, server-side API,
+  inventory lock/transaction, order/payment verification, gift token generation/redeem
+  endpoint যোগ করতে হবে।
+- Demo prices, movie names, availability, schedules are not live or verified.
+
+NOTE
+- Existing Train page এবং homepage source files untouched রাখা হয়েছে।
+- Common header/footer stylescommon.css ব্যবহার করে; category CSS/JS আলাদা।
+
+
+ছবি (Images):
+সব category page-এর ছবি assets/images/ folder-এর মধ্যে local JPG হিসেবে দেওয়া আছে। আলাদা করে image download করার প্রয়োজন নেই।

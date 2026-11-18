@@ -1,0 +1,2 @@
+Add your transparent gift PNG in this folder and name it gift-box.png.
+c:\Users\Rifat\Downloads\gift-box.png

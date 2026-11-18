@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your selected bookings and continue to Chalo checkout.">
+    <title>My Cart | Chalo</title>
+
+    <link rel="stylesheet" href="css/stylescommon.css">
+    <link rel="stylesheet" href="css/stylescart.css">
+
+    <script src="js/auth-nav.js" defer></script>
+    <script src="js/cart.js" defer></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="brand">
+            <img src="assets/chalo-logo.png" class="brand-logo" alt="Chalo logo">
+            <span>চলো</span>
+        </a>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="gift-booking.html">Gift</a>
+            <a href="index.html#about">About</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="login.html" class="login-link">Log in</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+</header>
+
+<main class="cart-page">
+
+    <section class="cart-hero">
+        <div class="cart-container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / My Cart
+            </div>
+
+            <span class="eyebrow">YOUR CHALO PLAN</span>
+            <h1>Your cart, your next adventure.</h1>
+            <p>Review your selected experiences before moving to checkout.</p>
+
+            <div class="cart-progress">
+                <div class="progress-step active">
+                    <span>1</span>
+                    <strong>Cart</strong>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>2</span>
+                    <strong>Checkout</strong>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>3</span>
+                    <strong>Confirmation</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cart-content">
+        <div class="cart-container">
+
+            <div class="cart-demo-notice">
+                <span>ⓘ</span>
+                <p>
+                    Your cart is saved to your Chalo account.
+                    Items are not confirmed bookings until checkout is completed.
+                </p>
+            </div>
+
+            <div class="cart-heading">
+                <div>
+                    <span class="eyebrow">YOUR SELECTIONS</span>
+                    <h2>Shopping cart</h2>
+                    <p id="cartItemCount">Your selected services will appear here.</p>
+                </div>
+
+                <a href="index.html" class="continue-shopping">
+                    ← Continue exploring
+                </a>
+            </div>
+
+            <div class="cart-layout">
+
+                <!-- Cart items -->
+                <section class="cart-items-panel">
+
+                    <div class="cart-items-toolbar">
+                        <label class="select-all-label">
+                            <input type="checkbox" id="selectAllItems" checked>
+                            <span>Select all</span>
+                        </label>
+
+                        <button type="button" id="removeSelectedItems">
+                            Remove selected
+                        </button>
+                    </div>
+
+                    <div id="cartItems" class="cart-items-list">
+
+                        <!-- JavaScript renders cart items here -->
+
+                    </div>
+
+                    <div id="cartEmptyState" class="cart-empty-state" hidden>
+                        <div class="empty-cart-icon">🛍</div>
+                        <h3>Your cart is waiting for a plan.</h3>
+                        <p>
+                            You haven't added any experiences yet.
+                            Explore Chalo and find something exciting.
+                        </p>
+                        <a href="index.html" class="cart-primary-btn">
+                            Explore experiences
+                        </a>
+                    </div>
+
+                </section>
+
+                <!-- Order summary -->
+                <aside class="cart-summary">
+
+                    <div class="summary-heading">
+                        <h3>Order summary</h3>
+                        <span id="summaryItemCount">0 items</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Selected items</span>
+                        <strong id="summarySubtotal">৳0</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Service fees</span>
+                        <strong id="summaryFees">৳0</strong>
+                    </div>
+
+                    <div class="summary-row discount-row" id="discountRow" hidden>
+                        <span>Discount</span>
+                        <strong id="summaryDiscount">−৳0</strong>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-total">
+                        <span>Total payable</span>
+                        <strong id="summaryTotal">৳0</strong>
+                    </div>
+
+                    <p class="summary-note">
+                        Final prices and availability will be checked during checkout.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="checkout-btn"
+                        id="proceedCheckout"
+                        disabled>
+                        Proceed to checkout →
+                    </button>
+
+                    <div class="secure-checkout">
+                        <span>♢</span>
+                        <p>Secure checkout experience</p>
+                    </div>
+
+                    <div class="summary-help">
+                        <strong>Need help?</strong>
+                        <p>Review your selected services before continuing.</p>
+                    </div>
+
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <a class="brand footer-logo" href="index.html">
+                <img src="assets/chalo-logo.png" class="brand-logo" alt="">
+                চলো
+            </a>
+            <p>Go somewhere. Do something. Make it a little more you.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Explore</h3>
+            <a href="bus.html">Bus</a>
+            <a href="train.html">Train</a>
+            <a href="ferry.html">River Ferries</a>
+            <a href="hotel.html">Hotels</a>
+            <a href="restaurant.html">Restaurants</a>
+            <a href="movies.html">Movies</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Chalo</h3>
+            <a href="gift-booking.html">Gift a plan</a>
+            <a href="index.html#about">About us</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Chalo. All rights reserved.</span>
+        <span>BDT ৳</span>
+    </div>
+</footer>
+
+</body>
+</html>

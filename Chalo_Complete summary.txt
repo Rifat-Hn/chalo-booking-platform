@@ -1,0 +1,1476 @@
+# CHALO – COMPLETE PROJECT HANDOVER & DEVELOPMENT DOCUMENT
+
+## 1. PROJECT IDENTITY
+
+**Project Name:** চলো – Chalo
+
+**Project Type:** All-in-One Online Booking and Reservation Platform
+
+**Target Market:** Bangladesh
+
+**Project Vision:**
+
+Chalo is an all-in-one booking platform where users can discover, compare, reserve, purchase, and manage multiple types of services through a single account and a unified checkout system.
+
+Instead of visiting different websites to book train tickets, bus tickets, hotels, restaurants, cinema tickets, and other services, customers can do everything from one platform.
+
+The main concept is:
+
+**One platform. Multiple services. One cart. One checkout. One payment.**
+
+Chalo should eventually become a commercial-quality platform rather than just a basic university project.
+
+---
+
+# 2. CORE SERVICES AND BOOKING CATEGORIES
+
+Chalo will support the following categories:
+
+1. Bus Booking
+2. Train Booking
+3. River Ferry / Launch Booking
+4. Hotel and Room Booking
+5. Restaurant Table Reservations
+6. Cinema / Movie Tickets
+7. Hall Shows and Performances
+8. Concerts and Other Events
+
+Each category must have its own appropriate interface and booking logic.
+
+Although all services share one account system, navigation system, cart, and checkout, their booking fields and inventory management must remain category-specific.
+
+### Transport Booking
+
+For buses, trains, and river ferries:
+
+- Departure location
+- Destination
+- Departure date
+- Number of travelers
+- Available services
+- Departure and arrival times
+- Seat selection
+- Ticket price
+- Passenger information
+
+### Hotel Booking
+
+Required fields:
+
+- Check-in date
+- Check-out date
+- Location
+- Number of guests
+- Number of rooms
+
+Hotel functionality:
+
+- Hotel listings
+- Room types
+- Room availability
+- Room images
+- Facilities and amenities
+- Price per night
+- Ratings and reviews
+- Check-in and check-out policies
+- Room selection
+
+### Restaurant Booking
+
+Required fields:
+
+- Location
+- Reservation date
+- From time
+- To time
+- Number of seats
+
+Restaurant functionality:
+
+- Restaurant listings
+- Restaurant images
+- Cuisine and food categories
+- Ratings and reviews
+- Available time slots
+- Table reservations
+- Reservation details
+
+### Movie Booking
+
+Required fields:
+
+- Movie/show selection
+- Cinema location
+- Show date
+- Show time range
+- Number of seats
+
+Movie functionality:
+
+- Movie listings
+- Movie posters
+- Cinema information
+- Showtimes
+- Seat selection
+- Ticket categories
+- Ticket pricing
+
+### Events and Hall Shows
+
+Required functionality:
+
+- Event listings
+- Event details
+- Venue information
+- Event dates and times
+- Ticket categories
+- Seat or ticket quantity selection
+- Ticket pricing
+
+---
+
+# 3. MOST IMPORTANT FEATURE: UNIFIED CART AND SINGLE CHECKOUT
+
+This is a fundamental feature of Chalo and must be considered when designing the entire system.
+
+The platform should work similarly to an e-commerce shopping cart.
+
+A customer must be able to select different services and add them to one shared cart.
+
+### Example scenario
+
+A customer wants to travel from Dhaka to Cox's Bazar.
+
+They may need:
+
+- Dhaka to Cox's Bazar train tickets: ৳2,400
+- Cox's Bazar hotel reservation: ৳6,000
+- Restaurant reservation: ৳500
+
+Instead of paying separately for each service, the customer adds all three to the same cart.
+
+Illustrative total:
+
+৳2,400 + ৳6,000 + ৳500 = ৳8,900.
+
+The customer then proceeds to one checkout page and makes one payment for the combined order.
+
+These prices are examples, not actual platform prices.
+
+### Cart functionality
+
+The shared cart must:
+
+- Display all selected services.
+- Display each service's name and category.
+- Show dates and times.
+- Show selected seats, rooms, tables, or ticket quantities.
+- Show the price of each item.
+- Allow customers to edit items.
+- Allow customers to remove items.
+- Allow customers to select or deselect items for checkout.
+- Calculate the subtotal automatically.
+- Display applicable fees and discounts.
+- Calculate the final total.
+- Allow the customer to proceed to checkout.
+
+The cart icon should be visible in the main navigation across relevant pages, with a live item count.
+
+### Important: Different categories must coexist in the same cart
+
+For example, a cart can contain:
+
+- Train booking
+- Hotel booking
+- Restaurant reservation
+- Movie tickets
+- Bus tickets
+
+Do not create separate carts for different categories.
+
+### Unified checkout
+
+The checkout page must display all selected items together.
+
+It should include:
+
+- Order summary
+- Individual service details
+- Passenger or guest information
+- Contact information
+- Itemized prices
+- Subtotal
+- Fees
+- Discounts
+- Final payable amount
+- Payment method
+- Confirm and pay button
+
+The customer should complete one payment transaction for the selected items.
+
+### Important architectural distinction
+
+One customer payment does not mean that all services become one booking.
+
+The system must create:
+
+- One master order
+- Multiple individual order items
+- Separate service bookings associated with those order items
+- One payment transaction for the master order, with support for payment attempts and refunds
+
+For example:
+
+Master Order: CHALO-ORD-0001
+
+| Order Item | Booking |
+|---|---|
+| Item 1 | Train booking |
+| Item 2 | Hotel booking |
+| Item 3 | Restaurant reservation |
+
+Each service booking must maintain its own:
+
+- Provider
+- Booking reference
+- Confirmation status
+- Cancellation status
+- Refund status
+- Ticket or reservation details
+
+The customer sees one combined order but can still manage each booking separately.
+
+### Checkout reliability
+
+Before accepting payment, the backend must:
+
+1. Revalidate all item prices.
+2. Revalidate availability.
+3. Temporarily hold inventory where supported.
+4. Prevent double booking.
+5. Calculate the final amount on the server.
+6. Initiate the payment transaction.
+7. Verify payment server-side.
+8. Confirm individual bookings.
+9. Handle failed, pending, and partially confirmed bookings.
+
+A successful browser redirect must never be treated as proof of payment.
+
+For the initial academic prototype, simulated payment is acceptable. Real payment integration can be implemented later.
+
+---
+
+# 4. GIFT BOOKING SYSTEM
+
+Chalo must have a gift-booking feature.
+
+The customer should be able to book a service for another person and send them a digital gift or e-ticket.
+
+Example:
+
+A user books a restaurant reservation or train ticket for a friend.
+
+Gift booking should support:
+
+- Service selection
+- Booking details
+- Recipient name
+- Recipient contact information
+- Optional personal message
+- Purchaser information
+- Gift review
+- Checkout and payment
+- Gift confirmation
+- Digital gift voucher or e-ticket
+
+The purchaser and recipient must be treated as different people.
+
+The recipient must not receive the purchaser's payment details.
+
+Gift bookings should also be compatible with the unified cart and checkout.
+
+The exact gift model still needs to be decided: a confirmed booking or a redeemable voucher depending on the category.
+
+---
+
+# 5. RATINGS, REVIEWS AND SORTING
+
+Each service listing should display:
+
+- Average star rating
+- Total number of reviews
+- Customer feedback
+
+Users should be able to sort results by:
+
+- Recommended
+- Highest rated
+- Lowest price
+- Highest price
+
+When sorting by highest rated, the system must order listings by descending average rating.
+
+Only genuine eligible bookings should be allowed to receive verified-booking review badges.
+
+---
+
+# 6. USER ACCOUNTS AND ROLES
+
+The system should support:
+
+### Customer
+
+- Register
+- Log in
+- Log out
+- Manage profile
+- Search services
+- Add services to cart
+- Manage cart
+- Complete checkout
+- View master orders
+- View individual bookings
+- Cancel eligible bookings
+- View tickets and vouchers
+- Submit reviews
+- Make gift bookings
+
+### Service Provider
+
+Providers may manage their own services.
+
+Possible functionality:
+
+- Provider registration
+- Provider profile
+- Service creation
+- Service editing
+- Price management
+- Schedule management
+- Availability management
+- Booking management
+- Customer information relevant to their bookings
+- Revenue and booking summaries
+
+### Administrator
+
+Admin functionality:
+
+- Manage users
+- Manage providers
+- Approve or reject providers
+- Manage categories
+- Manage services
+- Manage listings
+- Manage bookings
+- Monitor payments
+- Handle complaints
+- Manage reviews
+- View platform statistics
+
+Provider verification and approval must be enforced by the backend, not merely displayed as a badge.
+
+---
+
+# 7. HOMEPAGE DESIGN – EXISTING DESIGN MUST BE PRESERVED
+
+The homepage has already been designed in Figma and implemented in HTML, CSS, and JavaScript.
+
+Do not redesign it unnecessarily.
+
+Its current visual direction:
+
+- Premium
+- Modern
+- Clean
+- Minimal
+- White and cream backgrounds
+- Dark navy sections
+- Peach and warm accent colors
+- Elegant typography
+- Rounded cards
+- Professional booking-platform appearance
+
+### Existing homepage structure
+
+1. Header and navigation
+2. Chalo brand logo and name
+3. Home, Gift, About navigation
+4. Login and Register links
+5. Hero section
+6. Main promotional heading:
+   "Big plans. Little escapes. All in one place."
+7. Gift promotional section
+8. Booking search widget
+9. Service category cards
+10. Destination cards
+11. Trust and value proposition section
+12. Call-to-action section
+13. Footer
+
+The homepage includes a category-based search widget.
+
+### Search widget fields
+
+**Bus / Train / River Ferries:**
+
+- From
+- To
+- Departure date
+- Travelers
+
+**Hotels:**
+
+- Check-in
+- Check-out
+- Location
+- Guests
+
+**Restaurants:**
+
+- From time
+- To time
+- Date
+- Number of seats
+
+**Movies:**
+
+- Show from time
+- Show to time
+- Date
+- Number of seats
+
+The widget changes its fields based on the selected category.
+
+The current frontend search interaction is a demonstration, not a live availability search connected to a database.
+
+### Logo requirements
+
+The Chalo logo is a user-provided image asset.
+
+Never generate a replacement logo or icon unless explicitly requested.
+
+The logo must have a controlled size and must not:
+
+- Expand beyond its header container
+- Cover other homepage elements
+- Appear in the center of the page unintentionally
+- Distort its aspect ratio
+
+The brand name is:
+
+**চলো – Chalo**
+
+---
+
+# 8. FRONTEND PROJECT STRUCTURE
+
+The project is organized with separate HTML, CSS, JavaScript, and assets folders.
+
+The user specifically wants separate CSS files for individual pages.
+
+Recommended structure:
+
+```text
+Chalo_Booking/
+│
+├── index.html
+├── login.html
+├── register.html
+├── gift-booking.html
+│
+├── bus.html
+├── train.html
+├── ferry.html
+├── hotel.html
+├── restaurant.html
+├── movies.html
+├── events.html
+│
+├── cart.html
+├── checkout.html
+├── confirmation.html
+│
+├── my-bookings.html
+├── profile.html
+│
+├── provider-dashboard.html
+├── admin-dashboard.html
+│
+├── css/
+│   ├── stylescommon.css
+│   ├── styleshome.css
+│   ├── styleslogin.css
+│   ├── stylesregister.css
+│   ├── stylesgift.css
+│   ├── stylesbus.css
+│   ├── stylestrain.css
+│   ├── stylesferry.css
+│   ├── styleshotel.css
+│   ├── stylesrestaurant.css
+│   ├── stylesmovies.css
+│   ├── stylesevents.css
+│   ├── stylescart.css
+│   ├── stylescheckout.css
+│   ├── stylesconfirmation.css
+│   └── stylesaccount.css
+│
+├── js/
+│   ├── main.js
+│   ├── login.js
+│   ├── register.js
+│   ├── search.js
+│   ├── cart.js
+│   ├── booking.js
+│   ├── checkout.js
+│   └── gift.js
+│
+├── assets/
+│   ├── chalo-logo.png
+│   ├── gift-box.png
+│   ├── images/
+│   └── icons/
+│
+└── README.txt
+```
+
+This is the target structure, not a claim that every listed page and file has already been implemented.
+
+### CSS architecture
+
+The user wants common styles and page-specific styles kept separate.
+
+For example, login.html should load:
+
+```html
+<link rel="stylesheet" href="css/stylescommon.css">
+<link rel="stylesheet" href="css/styleslogin.css">
+```
+
+The shared CSS should contain:
+
+- Global typography
+- Brand colors
+- Shared navbar
+- Shared footer
+- Common buttons
+- Shared components
+- Global layout conventions
+
+The login CSS should contain only login-specific styling.
+
+The homepage CSS should contain homepage-specific styling.
+
+Always load common CSS before page-specific CSS.
+
+Do not duplicate global styles unnecessarily.
+
+### Shared HTML components
+
+For now, shared headers and footers may be repeated in individual HTML pages.
+
+When moving to PHP, convert them into reusable PHP includes, such as:
+
+- `includes/header.php`
+- `includes/footer.php`
+- `includes/navbar.php`
+
+Do not introduce unnecessary frameworks without discussing the decision first.
+
+---
+
+# 9. CURRENT FRONTEND DEVELOPMENT STATUS
+
+The original homepage exists as a static HTML/CSS/JavaScript frontend.
+
+The project has also been extended with login, registration, and gift-page files.
+
+The latest integrated project archive was named:
+
+`Chalo_Booking_Integrated_Fixed.zip`
+
+The homepage logo sizing issue was addressed in the latest corrected version.
+
+The frontend is still a prototype. Do not assume that all links, pages, database operations, or backend features are complete.
+
+### Existing frontend capabilities
+
+- Homepage layout
+- Category tabs
+- Category-dependent search fields
+- Basic search validation
+- Login page design
+- Registration page design
+- Password visibility interaction
+- Gift-page navigation
+- Homepage/login navigation
+- Separate page-specific CSS
+
+### Features that still require development
+
+- Real user authentication
+- Database integration
+- Provider accounts
+- Admin management
+- Live service listings
+- Live search results
+- Inventory management
+- Real cart persistence
+- Cross-category cart operations
+- Unified checkout
+- Payment processing
+- Booking confirmations
+- Ticket generation
+- Cancellation and refund management
+- Real gift voucher generation
+- Verified review system
+
+Do not represent frontend demonstrations as completed backend functionality.
+
+---
+
+# 10. BACKEND AND DATABASE ARCHITECTURE
+
+The backend stack has not been conclusively finalized.
+
+The user has previous experience with:
+
+- PHP
+- MySQL
+- XAMPP
+- HTML
+- CSS
+- JavaScript
+
+A PHP and MySQL implementation is a reasonable option, but confirm the stack before committing to it.
+
+If using PHP and MySQL, prefer a modular structure with clear separation between:
+
+- Configuration
+- Authentication
+- Database operations
+- Services
+- Booking logic
+- Cart logic
+- Checkout
+- Payment
+- Provider functionality
+- Admin functionality
+
+### Recommended core database entities
+
+**User and provider:**
+
+- USER
+- PROVIDER
+- PROVIDER_PROFILE
+- ADMIN or role-based USER permissions
+
+**Services and inventory:**
+
+- SERVICE_CATEGORY
+- SERVICE
+- LOCATION
+- VENUE
+- SCHEDULE
+- SEAT
+- ROOM
+- TABLE
+- TICKET_TYPE
+
+**Booking:**
+
+- BOOKING
+- BOOKING_DETAIL
+- BOOKING_SEAT
+- BOOKING_ROOM
+- TABLE_RESERVATION
+- PASSENGER
+- GUEST
+
+**Unified cart and order:**
+
+- CART
+- CART_ITEM
+- MASTER_ORDER
+- ORDER_ITEM
+
+**Payment:**
+
+- PAYMENT
+- PAYMENT_ATTEMPT
+- REFUND
+
+**Other:**
+
+- REVIEW
+- GIFT
+- TICKET
+- NOTIFICATION
+
+### Important database relationships
+
+USER 1:N CART
+
+CART 1:N CART_ITEM
+
+USER 1:N MASTER_ORDER
+
+MASTER_ORDER 1:N ORDER_ITEM
+
+MASTER_ORDER 1:N PAYMENT_ATTEMPT
+
+ORDER_ITEM references its associated booking or bookings.
+
+BOOKING N:1 SERVICE
+
+PROVIDER 1:N SERVICE
+
+SERVICE_CATEGORY 1:N SERVICE
+
+A cart item is not a confirmed booking.
+
+A master order is not the same thing as an individual service booking.
+
+The database must preserve these distinctions.
+
+The final schema should use suitable foreign keys, indexes, constraints, transactions, and normalized category-specific inventory structures.
+
+Avoid storing all booking information in one unstructured JSON field when normalized relational tables are more appropriate.
+
+---
+
+# 11. PAYMENT ARCHITECTURE
+
+The platform needs one customer-facing checkout and payment transaction for a combined order.
+
+Potential Bangladesh payment gateway candidate: SSLCOMMERZ.
+
+It has not yet been selected or integrated.
+
+Before choosing a gateway, investigate:
+
+- Transaction initiation
+- Server-side payment validation
+- Payment notification/IPN handling
+- Refund support
+- Transaction status checking
+- Merchant requirements
+- Multi-provider settlement or split-payment capabilities
+
+Important:
+
+A single payment collected from the customer does not automatically distribute funds to different service providers.
+
+Provider settlement and commission handling must be designed separately.
+
+For the initial academic prototype, use simulated payment processing.
+
+Never:
+
+- Trust the total sent by the browser.
+- Store card details or plaintext passwords.
+- Mark orders as paid based only on a redirect.
+- Confirm bookings without verifying payment and inventory.
+
+---
+
+# 12. IMPORTANT BOOKING AND ORDER STATUS MANAGEMENT
+
+The system should support different statuses.
+
+### Master order status
+
+Possible statuses:
+
+- Pending
+- Awaiting Payment
+- Paid
+- Processing
+- Partially Confirmed
+- Confirmed
+- Partially Cancelled
+- Cancelled
+- Refund Pending
+- Partially Refunded
+- Refunded
+- Failed
+
+### Individual booking status
+
+Possible statuses:
+
+- Pending
+- Temporarily Held
+- Confirmed
+- Failed
+- Cancelled
+- Refund Pending
+- Refunded
+
+The master order and individual bookings must not be forced to have identical statuses.
+
+For example, a customer may pay once for three services, but one provider may fail to confirm a booking.
+
+The system must handle this situation without incorrectly treating every service as confirmed.
+
+Inventory holds must expire safely.
+
+Duplicate payment requests and double bookings must be prevented.
+
+---
+
+# 13. FIGMA DESIGN AND SCREEN INVENTORY
+
+The visual design process should continue in Figma before implementing additional frontend pages.
+
+Suggested Figma page organization:
+
+00 – Design System
+
+01 – Homepage
+
+02 – Authentication
+
+03 – Transport
+
+04 – Hotels
+
+05 – Dining and Entertainment
+
+06 – Gift Booking
+
+07 – Cart and Checkout
+
+08 – Confirmation
+
+09 – Customer Account
+
+10 – Provider Dashboard
+
+11 – Admin Panel
+
+### Required new screens for unified checkout
+
+**Cart page:**
+
+- Multiple service categories in one cart
+- Item selection
+- Edit and remove options
+- Itemized prices
+- Combined total
+- Continue shopping
+- Proceed to checkout
+
+**Checkout page:**
+
+- Customer details
+- Passenger and guest information
+- All selected booking summaries
+- Payment method
+- Combined amount
+- One payment button
+
+**Confirmation page:**
+
+- Master order reference
+- Payment status
+- Individual booking confirmations
+- Individual ticket or reservation references
+- Separate booking statuses
+- Download or view ticket options
+
+Also design failure, pending, and partial-confirmation states.
+
+All pages should follow the same Chalo visual identity while maintaining category-specific layouts.
+
+---
+
+# 14. DEVELOPMENT PRIORITIES
+
+Follow this development sequence.
+
+### Phase 1 – Existing frontend stabilization
+
+- Preserve the original homepage.
+- Verify logo sizing and positioning.
+- Verify all navigation links.
+- Keep shared CSS separate from page-specific CSS.
+- Verify login and registration page layouts.
+- Verify gift-page navigation.
+- Ensure responsive design.
+
+### Phase 2 – Complete the Figma designs
+
+- Login
+- Registration
+- Gift booking
+- Individual category pages
+- Cart
+- Checkout
+- Confirmation
+- Customer account
+- Provider dashboard
+- Admin panel
+
+### Phase 3 – Build category-specific frontend pages
+
+Develop the individual service browsing and booking interfaces.
+
+### Phase 4 – Implement backend and database
+
+Build:
+
+- User authentication
+- User roles
+- Provider management
+- Service listings
+- Availability
+- Booking records
+- Inventory management
+
+### Phase 5 – Implement the unified cart
+
+Build:
+
+- Add to cart
+- Remove from cart
+- Edit cart items
+- Select and deselect items
+- Cart persistence
+- Combined price calculation
+- Checkout preparation
+
+### Phase 6 – Implement unified checkout and payment
+
+Build:
+
+- Price and availability revalidation
+- Inventory holds
+- Master order creation
+- Payment integration or simulation
+- Payment validation
+- Individual booking confirmation
+- Failure and partial-confirmation handling
+
+### Phase 7 – Customer and provider management
+
+Build:
+
+- My Bookings
+- Order history
+- Individual booking management
+- Tickets
+- Cancellation
+- Refunds
+- Reviews
+- Provider dashboard
+
+### Phase 8 – Admin and testing
+
+Build admin functionality and test the complete workflow.
+
+Test multiple categories in one cart, simultaneous inventory requests, payment failures, duplicate requests, and partial booking failures.
+
+---
+
+# 15. IMPORTANT INSTRUCTIONS FOR ANY AI CONTINUING THIS PROJECT
+
+The following instructions are essential.
+
+1. Treat Chalo as an ongoing project, not a new project.
+2. Do not redesign the existing homepage without explicit permission.
+3. Preserve the original homepage structure and styling.
+4. Do not generate replacement logos or icons. Use image references so the user can supply their own assets.
+5. Keep the logo dimensions controlled. Never allow it to overlap the homepage.
+6. Use the brand name exactly as: চলো – Chalo.
+7. Keep CSS files separate for individual pages.
+8. Keep shared CSS in `stylescommon.css`.
+9. Do not overwrite existing files without checking their contents.
+10. Preserve the original assets and working JavaScript.
+11. The unified cart and single checkout are core requirements, not optional additions.
+12. Different booking categories must coexist in one cart.
+13. One master order must contain multiple individual service bookings.
+14. One customer-facing payment must cover the selected cart items.
+15. Maintain separate booking statuses for each provider/service.
+16. Do not claim real authentication, payments, or availability when only frontend demonstrations exist.
+17. Do not invent database functionality or pretend that a button works when it does not.
+18. Explain exactly which file and folder each code section belongs to.
+19. When changing a file, provide the complete updated file when practical, not disconnected fragments that are difficult for a beginner to integrate.
+20. Keep instructions beginner-friendly and explain where to put files and how to test them.
+21. Do not introduce React, Laravel, Node.js, or other frameworks without first discussing the architectural decision.
+22. Before making major changes, inspect the existing project files and understand the current structure.
+
+---
+
+# 16. CURRENT UNRESOLVED DECISIONS
+
+The following decisions still need to be made:
+
+- Final backend stack
+- Final database schema
+- Final payment gateway
+- Provider commission and settlement model
+- Guest checkout support
+- Cart persistence and expiration
+- Inventory hold duration
+- Cancellation and refund policies
+- Gift voucher versus confirmed gift booking
+- Gift delivery channels
+- QR ticket verification
+- Review eligibility rules
+- Final MVP category scope
+- Hosting and deployment
+
+Do not assume these decisions have already been finalized.
+
+---
+
+# 17. THE OVERALL GOAL
+
+The ultimate goal is to build Chalo into a polished, reliable, scalable, and commercially viable multi-service booking platform.
+
+The platform should combine the convenience of an e-commerce shopping cart with the specialized reservation workflows of travel, hospitality, dining, cinema, and entertainment services.
+
+The defining feature is:
+
+**A customer can plan an entire experience, select multiple services from different categories, add everything to one shared cart, and complete one unified checkout with a single payment.**
+
+The individual bookings remain independently manageable, while the customer experiences one seamless platform.
+
+**Development philosophy:** Preserve what already works, build systematically, maintain clean architecture, and never sacrifice functionality or reliability for visual appearance.
+
+
+---
+
+# 18. UPDATED REQUIREMENTS – CURRENT DEVELOPMENT SCOPE
+**This section records the user's latest decisions and takes precedence over any earlier conflicting or less-specific descriptions in this document.** In particular, the new gift journey below replaces the earlier fixed gift-package concept.
+
+## 18.1 Database-driven listings – remove hardcoded service results
+
+The current service pages have listings (such as trains, buses, and other services) written directly into their HTML. This is only placeholder/static content and must be replaced with database-driven results.
+
+Required behavior:
+- Service pages must request listing data from the backend/database rather than contain manually hardcoded service cards or schedules.
+- Search filters (route, date, location, category, availability, etc.) must be sent to the backend as appropriate.
+- The backend returns matching services and the frontend renders the results dynamically.
+- The same principle applies to all applicable categories: buses, trains, ferries/launches, hotels/rooms, restaurants/tables, movies/showtimes, and events.
+- Keep category-specific data and booking rules. Do not force all categories into identical fields.
+- Include loading, empty-results, and error states.
+- Use parameterized database queries and validate inputs server-side.
+- Do not expose database credentials or secrets in browser JavaScript.
+- Do not claim that listings are live until they are actually fetched from the database.
+
+The backend technology is not yet confirmed. Inspect the existing project and agree the stack before implementing. PHP + MySQL + XAMPP is a likely fit, but must not be silently assumed.
+
+## 18.2 Unified cart – required end-to-end functionality
+
+The cross-category cart has not yet been implemented and is a core outstanding requirement.
+
+A user must be able to add items from different service pages to one shared cart, for example:
+- Train tickets
+- Bus tickets
+- Ferry/launch tickets
+- Hotel rooms
+- Restaurant reservations
+- Movie tickets
+- Event tickets
+
+The cart must:
+- Persist the user's selected items appropriately (database-backed for logged-in users; define a safe guest strategy if guest checkout is supported).
+- Show category, service/provider, date/time, route or venue, quantity, selected seat/room/table/ticket type, and relevant passenger/guest details.
+- Allow editing and removing items.
+- Allow selecting/deselecting items for the current checkout.
+- Recalculate item totals, subtotal, fees, discounts, and payable total.
+- Revalidate prices and availability on the server before order creation/payment.
+- Prevent duplicate submissions and double booking.
+- Keep category-specific item details without losing them in the shared cart.
+
+A cart item is not yet a confirmed booking. One checkout should create one master order containing multiple order items, with each actual service booking managed separately.
+
+## 18.3 Updated gift journey – replace the old fixed-package page
+
+**Important: Do not use the old concept of a page containing preselected/fixed gift packages. That is not the requested gift experience.**
+
+The Gift landing page should ask what kind of experience the customer wants to gift. It should present attractive category/experience cards, for example:
+- “A romantic candlelight dinner?” → opens the existing Restaurants page.
+- “An exciting journey by train?” → opens the existing Train page.
+- “A comfortable getaway by bus?” → opens the existing Bus page.
+- “A relaxing hotel stay?” → opens the existing Hotels page.
+- “A movie night for someone special?” → opens the existing Movies page.
+- “A scenic river journey?” → opens the existing River Ferries page.
+- “An unforgettable event or concert?” → opens the existing Events page.
+
+These are navigation choices, not fixed-price packages or pre-bundled products. Use the existing category pages and their normal search/listing/selection workflow. Do not create duplicate gift-only versions of every service page.
+
+### Gift mode inside existing category pages
+
+When a user enters a category page from the Gift landing page:
+- Open the exact same service page used for ordinary booking.
+- Preserve its layout, search fields, filters, listing data, and service-specific selection behavior.
+- Activate a clear gift mode, using a reliable mechanism such as a URL query parameter/session state (for example `?mode=gift`) and validate it appropriately.
+- In normal mode, the primary action remains **BOOK** (or the existing normal booking label).
+- In gift mode, change that primary action to **GIFT**.
+- Clicking **GIFT** adds the selected service to the shared cart with gift-mode metadata and proceeds to the cart or unified checkout flow.
+- Do not duplicate listings or hardcode a separate gift inventory.
+- The gift-mode state must survive navigation and refresh as appropriate, and must not accidentally change an ordinary booking into a gift.
+
+If a cart contains multiple items, preserve the gift/self mode and recipient information consistently. The data model must be able to distinguish purchaser/customer from recipient.
+
+## 18.4 Unified checkout – Self Booking / Gifting toggle
+
+Build a dedicated unified checkout page for the selected cart items. It must show the selected items and the combined order/payment summary.
+
+At the top of the customer-details section, provide a clear two-state toggle:
+- **Self Booking**
+- **Gifting**
+
+### Self Booking state
+
+When Self Booking is selected, show the purchaser/customer's own relevant details, such as:
+- Full name
+- Phone number
+- Email (where applicable)
+- Address (where required)
+- Passenger/guest information required by the selected service
+- Any other category-specific mandatory information
+
+Do not request irrelevant fields merely to fill space. For example, transport passenger identity details may differ from hotel guest or restaurant reservation details.
+
+### Gifting state
+
+When Gifting is selected, show recipient details:
+- Recipient's full name
+- Recipient's phone number
+- Recipient's email
+- Recipient's address
+- A short personal message/note for the recipient
+
+The purchaser remains the authenticated/customer account placing and paying for the order. Store purchaser details separately from recipient details. The recipient must not be shown the purchaser's payment credentials, card/bank details, or private payment information.
+
+The checkout must clearly distinguish:
+- Purchaser / payer
+- Recipient / gift beneficiary
+- Passenger, guest, attendee, or other service participant where the service requires separate participant details
+
+The selected items, gift mode, recipient data, personal note, and purchaser/order references must be stored in a structured way. Do not put all these values into one unstructured field.
+
+### Important design decision for mixed carts
+
+The initial user description specifies one Self Booking/Gifting toggle for the checkout. Unless the user later requests mixed self-and-gift orders, implement the toggle as applying to the entire selected checkout/order: all selected items are either for self or are gifts to the recipient entered for that order. Do not silently assume that one checkout can contain different recipients. If mixed recipients are required later, the data model and UI must support per-item or per-recipient gift groups.
+
+## 18.5 OTP verification and payment sequence
+
+The requested customer flow is:
+1. User reviews the cart and proceeds to unified checkout.
+2. User selects Self Booking or Gifting and completes the relevant details.
+3. The system displays the complete order summary and final amount.
+4. The system sends a one-time verification code (OTP) to the purchaser's registered/verified phone number.
+5. A dedicated OTP verification screen asks the purchaser to enter the code.
+6. The backend verifies the OTP, expiry, attempt limit, and order/session association.
+7. Only after successful verification does the user proceed to the payment step.
+8. The user selects an available payment method and completes payment.
+9. The backend verifies the payment result server-side.
+10. The system confirms the individual bookings and displays the order/booking confirmation.
+
+Important distinctions:
+- This requested OTP is Chalo's phone/order verification step. It is not the same as a payment provider's own PIN, OTP, or authorization process.
+- Do not send an OTP to the gift recipient as a substitute for verifying the purchaser. The purchaser is the person authorizing and paying for the order.
+- OTPs must expire, be single-use, be rate-limited, and be stored securely (prefer hashed OTP values). Never hardcode a real OTP in production.
+- For an academic demonstration without an SMS provider, a clearly labelled development-only OTP simulation may be used. Do not represent it as real SMS delivery.
+- Do not proceed to payment merely because the OTP page was opened; the backend must validate the code.
+- Payment success must be verified by the backend/gateway, not inferred from a browser redirect.
+
+## 18.6 Payment methods and gateway scope
+
+The user wants the payment step to support or eventually accommodate Bangladesh-relevant options such as:
+- bKash
+- Nagad
+- Bank payment
+- PayPal (if suitable and available for the merchant's jurisdiction/use case)
+
+These are requested payment options, not proof that any gateway account or integration already exists. Do not display a method as operational until it is actually integrated and tested.
+
+For the university prototype, simulated payment is acceptable if clearly labelled. Keep payment processing behind a backend interface so a real gateway can be integrated later. Confirm gateway availability, merchant eligibility, API documentation, settlement, fees, and callback/validation requirements before selecting one. Never collect or store a user's wallet PIN, bank password, or card security credentials directly in Chalo.
+
+## 18.7 Train page search UI consistency
+
+The Train page already exists, but its search-bar design does not match the search interface on the other category pages (such as Bus and Movies).
+
+Required changes:
+- Inspect the existing Train, Bus, Movies, and other service page markup and styles before editing.
+- Update the Train page search-bar structure and visual styling so it follows the same shared design language and component conventions as the other category pages.
+- Match spacing, alignment, field heights, labels, borders, radii, typography, button styling, responsive behavior, and interaction states.
+- Preserve train-specific fields and functionality (for example From, To, departure date, travelers, and any train-specific filters).
+- Do not copy unrelated bus/movie fields into the Train page.
+- Prefer a reusable shared search component/style where the current architecture permits it; otherwise make the minimum targeted changes to the Train page.
+- Do not redesign the entire Train page or other category pages unnecessarily.
+
+## 18.8 Required screens and flow to implement
+
+The current project needs the following working screens/flows, subject to inspection of what already exists:
+- Updated Gift landing page with experience/category cards.
+- Existing category pages operating in both normal BOOK mode and gift GIFT mode.
+- Database-driven category listing/search results.
+- Shared cart page.
+- Unified checkout page with Self Booking/Gifting toggle.
+- OTP entry/verification page.
+- Payment selection/processing page.
+- Order and booking confirmation page.
+- Useful pending, expired OTP, invalid OTP, payment failure, and booking failure/partial-confirmation states.
+
+Do not create duplicate pages if an existing page can be safely extended. Inspect first.
+
+## 18.9 Updated implementation priorities
+
+For the user's current requested scope, work in this order:
+
+1. Inspect the complete existing project folder, its page structure, CSS, JavaScript, assets, and any existing backend/database files. Identify what is implemented, broken, duplicated, or missing.
+2. Confirm the backend stack and local execution environment. Do not overwrite or restructure the project blindly.
+3. Stabilize the existing pages and navigation. Preserve the homepage and existing visual identity.
+4. Align the Train page search UI with the established Bus/Movies page design.
+5. Replace hardcoded service listings with backend/database-driven listing endpoints and dynamic rendering for each relevant category.
+6. Implement the new Gift landing page and gift-mode navigation into the existing category pages.
+7. Implement a shared cross-category cart with persistence and item editing/removal/selection.
+8. Implement unified checkout with the Self Booking/Gifting toggle and separate purchaser/recipient data.
+9. Implement purchaser phone OTP verification and a dedicated OTP screen.
+10. Implement a payment step with a clearly labelled simulation first, unless a real gateway has been explicitly selected and configured.
+11. Implement server-side payment verification, order creation, individual booking confirmation, and the final confirmation screen.
+12. Test normal booking and gift booking across multiple categories, including errors and edge cases.
+
+Do not try to implement all layers as one unreviewed code dump. Work in small, testable stages and report the files changed, database changes, setup steps, and tests performed.
+
+## 18.10 Current status of the newly specified work
+
+Based on the user's latest description:
+- The Train page exists, but its search UI needs visual alignment with the other category pages.
+- Pages for Movies and the other listed services have been made alongside Train.
+- Service listings (trains, buses, and other services) are currently hardcoded in HTML and need database fetching.
+- The unified add-to-cart system is not yet built.
+- The final unified checkout/confirmation/payment flow is not yet built.
+- The new experience-card Gift landing page and gift-mode behavior are not yet implemented as specified.
+- Purchaser phone OTP verification and its dedicated entry page are not yet built.
+
+This is the user's reported status. An AI continuing the project must inspect the actual source folder before deciding whether any additional pieces already exist.
+
+---
+
+# 19. MASTER PROMPT FOR AN AI CODING AGENT WORKING ON THE EXISTING CHALO PROJECT
+
+The user may provide the following prompt together with the complete existing project folder/archive.
+
+**ROLE AND OBJECTIVE**
+
+Act as a senior full-stack engineer and carefully extend my existing university project, **চলো – Chalo**, an all-in-one Bangladesh-focused booking and reservation platform. This is an existing project, not a request to generate a new project from scratch. Your job is to inspect the actual source folder first, preserve working functionality, and implement the requirements below in the existing architecture.
+
+**FIRST: INSPECT BEFORE EDITING**
+
+1. Read the complete folder structure and inspect all relevant HTML, CSS, JavaScript, image assets, and existing backend/database files.
+2. Identify the current technology stack, how the project is run locally, which pages already exist, and which features are functional versus visual placeholders.
+3. Do not assume the handover's suggested file structure exactly matches the actual folder.
+4. Do not delete, rename, overwrite, or replace working files without understanding their dependencies.
+5. Before coding, provide a concise audit: existing files/features, missing features, conflicts, proposed changes, and any decision that genuinely requires my approval.
+6. If a critical decision is missing (especially backend stack, database credentials/environment, or real payment gateway), ask only the necessary question. Do not invent credentials, API keys, provider accounts, or production integrations.
+
+**PROJECT IDENTITY AND DESIGN**
+
+- Brand: **চলো – Chalo**.
+- Existing project: multi-category booking platform for buses, trains, river ferries/launches, hotels, restaurants, movies/cinema, hall shows, concerts, and events.
+- Preserve the existing homepage and its design. Do not redesign it unnecessarily.
+- Preserve the supplied logo `assets/chalo-logo.png` and existing assets. Never create a replacement logo.
+- Keep the established premium, clean, minimal visual identity: white/cream backgrounds, dark navy sections, warm/peach accents, elegant typography, rounded cards, and consistent spacing.
+- Maintain responsive desktop and mobile layouts.
+- Keep common styles separate from page-specific CSS. Load common CSS before page-specific CSS.
+- Do not introduce React, Laravel, Node.js, or another framework unless I approve the change first.
+- Explain file paths and setup steps clearly because I need beginner-friendly instructions.
+
+**TASK 1 – MAKE ALL SERVICE LISTINGS DATABASE-DRIVEN**
+
+Currently, service listings such as trains and buses are hardcoded in HTML. Replace those static listing records with data retrieved from the database through a backend.
+
+Apply this to all relevant categories:
+- Bus
+- Train
+- River ferry/launch
+- Hotel and room
+- Restaurant and table/reservation slots
+- Movies/cinema and showtimes
+- Events, concerts, and hall shows
+
+Requirements:
+- Create an appropriate relational database schema and seed/sample data for development.
+- Build backend endpoints or server-rendered queries appropriate to the confirmed existing stack.
+- Fetch search results dynamically from the backend; render cards/results in the existing frontend design.
+- Support category-specific filters and fields. For example, transport routes/dates/travelers, hotel location/check-in/check-out/rooms, restaurant date/time/seats, and movie/event showtime/ticket quantity.
+- Include loading, no-results, and error states.
+- Validate all user input on the server and use parameterized/prepared database queries.
+- Keep database credentials server-side.
+- Do not leave duplicate hardcoded listing records as the actual source of truth. Static examples may only be clearly identified development fallbacks if needed.
+- Make sure the database schema preserves category-specific inventory and availability; do not flatten all categories into one generic table with inappropriate fields.
+
+**TASK 2 – ALIGN TRAIN SEARCH UI WITH OTHER CATEGORY PAGES**
+
+The Train page exists, but its search-bar design differs from the Bus, Movies, and other category pages.
+
+- Inspect the actual markup/CSS of Train, Bus, Movies, and other pages.
+- Update the Train search UI to match the established shared component style: dimensions, field layout, labels, spacing, typography, borders, radii, colors, button, focus/hover states, and mobile responsiveness.
+- Preserve train-specific search fields and behavior.
+- Reuse a shared component/style if appropriate, but do not break other pages or redesign them unnecessarily.
+- Test the Train page at desktop and mobile widths.
+
+**TASK 3 – BUILD THE NEW GIFT LANDING PAGE**
+
+Replace the existing fixed gift-package concept. I do not want a list of preselected packages.
+
+The Gift page should ask what kind of experience the customer wants to gift, using category/experience cards such as:
+- “A romantic candlelight dinner?” → Restaurants page
+- “An exciting journey by train?” → Train page
+- “A comfortable getaway by bus?” → Bus page
+- “A relaxing hotel stay?” → Hotels page
+- “A movie night for someone special?” → Movies page
+- “A scenic river journey?” → River Ferries page
+- “An unforgettable event or concert?” → Events page
+
+These cards only route the user to the relevant existing category page. They are not fixed packages, fixed prices, or separate inventory. Keep the Chalo design identity and make the cards polished and responsive.
+
+**TASK 4 – ADD GIFT MODE TO THE EXISTING SERVICE PAGES**
+
+Do not create separate duplicate gift pages for each service.
+
+When a user enters a category page from the Gift landing page:
+- Open the same existing category page used for normal bookings.
+- Keep its search, filters, database results, and category-specific selection workflow.
+- Activate gift mode through a reliable URL/session/state mechanism (for example `?mode=gift`).
+- In normal mode, the action button says **BOOK** (or the existing normal booking wording).
+- In gift mode, the action button says **GIFT**.
+- Clicking GIFT adds the selected service to the shared cart with gift-mode information and continues to the cart/checkout flow.
+- Preserve gift mode across the required navigation and refresh behavior.
+- Ensure normal users still see BOOK and do not accidentally enter gift mode.
+
+**TASK 5 – BUILD ONE CROSS-CATEGORY CART**
+
+Build one shared cart for every service category. A user must be able to add train, bus, hotel, restaurant, movie, ferry, and event selections to the same cart.
+
+The cart must:
+- Show category and service/provider name.
+- Show relevant route, venue, date, time, room/table/seat/ticket type, quantity, and other category-specific selections.
+- Show itemized prices and quantities.
+- Allow edit, remove, select, and deselect.
+- Calculate subtotal, fees, discounts, and final total.
+- Show a live cart count in the relevant navigation/header.
+- Persist appropriately; use database-backed persistence for logged-in users and define a safe guest strategy only if guest checkout is supported.
+- Handle both normal and gift-mode items.
+- Validate item data, prices, and availability again on the server before checkout/payment.
+
+Do not create separate carts for each category. A cart item is not a confirmed booking.
+
+**TASK 6 – BUILD THE UNIFIED CHECKOUT WITH SELF/GIFT TOGGLE**
+
+Create or extend the unified checkout page. It must show all selected cart items and one combined order summary.
+
+Provide a prominent toggle:
+- **Self Booking**
+- **Gifting**
+
+For Self Booking, collect the purchaser/customer's own required details:
+- Name
+- Phone
+- Email where applicable
+- Address where required
+- Passenger/guest/attendee details required by each selected service
+
+For Gifting, collect the recipient's:
+- Full name
+- Phone number
+- Email
+- Address
+- Short personal note/message
+
+Keep the purchaser/payer separate from the recipient/beneficiary. The purchaser is the person logged in and paying. Do not reveal the purchaser's payment credentials or private payment information to the recipient.
+
+For the first implementation, apply the Self/Gifting toggle to the entire selected checkout: all selected items are either for the purchaser or for the gift recipient. Do not silently implement mixed recipients or mixed self/gift items. Keep the architecture extensible so per-item recipient groups can be added later.
+
+Do not ask for fields irrelevant to a service. Preserve category-specific passenger, guest, attendee, and reservation details.
+
+**TASK 7 – ADD PURCHASER PHONE OTP VERIFICATION**
+
+Implement this order flow:
+1. Review cart.
+2. Complete checkout details and select Self Booking or Gifting.
+3. Review selected items and final server-calculated amount.
+4. Send an OTP to the purchaser's phone number.
+5. Show a dedicated OTP entry/verification page.
+6. Verify the OTP on the backend, linked to the correct purchaser and pending order/session.
+7. Enforce expiry, one-time use, attempt limits, and resend throttling.
+8. Only after successful verification allow the user to continue to payment.
+
+This OTP is Chalo's purchaser phone/order verification. It is separate from any OTP/PIN requested by a payment provider. Do not send the purchaser-verification OTP to the gift recipient.
+
+If no SMS provider is configured for the university prototype, implement a clearly labelled development-only OTP simulation and explain how to test it. Do not pretend a real SMS was sent. Never hardcode a production OTP or expose secrets in frontend code.
+
+**TASK 8 – PAYMENT STEP**
+
+After successful OTP verification, show a payment selection/processing page for the one combined order.
+
+The requested payment methods to consider are:
+- bKash
+- Nagad
+- Bank payment
+- PayPal, if appropriate and available for the merchant's jurisdiction and intended use
+
+Do not claim that any payment method is operational until a real integration is configured and tested. Ask before selecting a real gateway or using credentials. For the university prototype, a clearly labelled simulated payment is acceptable.
+
+Use a backend-controlled payment flow:
+- Create a pending master order.
+- Calculate the amount on the server.
+- Initiate payment through a backend integration or simulator.
+- Verify the payment result server-side.
+- Handle pending, failed, successful, and duplicate callback/request cases.
+- Never store wallet PINs, bank passwords, card security codes, or other payment credentials in Chalo.
+- A browser redirect is not proof of successful payment.
+
+Keep the payment integration modular so a real gateway can be added later. A single customer payment does not automatically split or settle money to multiple providers; do not claim provider settlement is implemented unless it is.
+
+**TASK 9 – ORDER AND BOOKING CONFIRMATION**
+
+After server-verified payment:
+- Confirm each individual service booking according to its own inventory/provider rules.
+- Show one master order reference and the status of each individual booking.
+- Display tickets, reservation details, and gift information as applicable.
+- Handle pending, failed, and partially confirmed items honestly.
+- Do not mark every item confirmed if one provider/service fails.
+- Provide useful error and recovery states.
+
+**DATABASE AND ARCHITECTURE REQUIREMENTS**
+
+Use a normalized relational design appropriate to the confirmed stack. Consider entities for users/roles, providers, categories, services, locations/venues, schedules, category-specific inventory (seats, rooms, tables, ticket types), carts/cart items, master orders/order items, individual bookings, passengers/guests, gifts/recipients, OTP challenges, payments/payment attempts, tickets, refunds, and reviews.
+
+Maintain the distinctions:
+- Cart item ≠ booking.
+- Master order ≠ individual service booking.
+- Purchaser ≠ gift recipient.
+- Chalo phone OTP ≠ payment-provider authorization.
+- Payment success ≠ automatic confirmation of every provider booking.
+
+Use foreign keys, indexes, unique constraints, transactions, prepared statements, authorization checks, and server-side validation. Protect passwords with secure password hashing. Do not put database secrets in client-side files.
+
+**IMPLEMENTATION AND DELIVERY RULES**
+
+- Work on the existing project folder; do not start over.
+- Make a backup before substantial modifications.
+- Preserve existing pages, assets, links, and working behavior unless a change is required.
+- Work in small phases; do not dump an untested rewrite of the entire project.
+- First report the audit and proposed implementation plan.
+- Then implement and test one phase at a time.
+- Provide complete updated files where practical, not disconnected fragments.
+- Tell me the exact path for every new or changed file.
+- Provide database SQL/schema and seed data, plus exact import/setup instructions.
+- Explain how to run the project locally (including the correct local server/document root for the chosen stack).
+- Test all key workflows: normal booking, gift booking, cross-category cart, edit/remove/select, Self/Gifting toggle, OTP valid/invalid/expired, payment success/failure, duplicate submissions, empty search results, and mobile responsiveness.
+- Report what is genuinely implemented, what is simulated, what requires API credentials/provider accounts, and what remains incomplete.
+- Never fabricate test results or claim a feature works without testing it.
+
+**STARTING INSTRUCTION**
+
+Start by inspecting the supplied project folder/archive. Do not edit anything until you understand its structure and report the audit. If you cannot access a file or need the user to make a decision, state that precisely. After the audit, proceed with the smallest safe implementation phase and preserve the existing Chalo project.
+

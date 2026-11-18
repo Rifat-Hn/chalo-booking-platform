@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Find and compare train journeys on Chalo.">
+<title>Train Tickets | চলো – Chalo</title>
+<link rel="stylesheet" href="css/stylescommon.css"><link rel="stylesheet" href="css/stylestrain.css">
+<script src="js/card-covers.js" defer></script>
+<script src="js/cart-api.js" defer></script>
+<script src="js/train.js" defer></script>
+<script src="js/auth-nav.js" defer></script>
+</head>
+<body>
+<header class="site-header"><div class="header-inner">
+<a href="index.html" class="brand"><img src="assets/chalo-logo.png" class="brand-logo" alt="Chalo logo"><span>চলো</span></a>
+<nav class="main-nav"><a href="index.html">Home</a><a href="gift-booking.html">Gift</a><a href="index.html#about">About</a></nav>
+<div class="header-actions"><a href="cart.html" class="login-link">
+    Cart
+    <span id="headerCartCount">0</span>
+</a><a href="login.html" class="login-link">Log in</a><a href="register.html" class="register-btn">Register</a></div>
+</div></header>
+<main>
+<section class="train-hero"><div class="train-container">
+<div class="breadcrumb"><a href="index.html">Home</a> / Train tickets</div>
+<div class="hero-heading"><div><h1>Less traffic. <em>More journey.</em></h1><p>Find your train, choose your class, and settle into the scenic route.</p></div><div class="hero-icon"><img src="assets/icons/train.png" alt="Train icon"></div></div>
+<div class="search-panel">
+<div class="category-tabs">
+<a href="bus.html"><span>▣</span> Bus</a><a class="selected" href="train.html"><img src="assets/icons/train.png" alt=""> Train</a><a href="ferry.html"><span>♧</span> River Ferries</a><a href="hotel.html"><span>▤</span> Hotels</a><a href="restaurant.html"><span>♜</span> Restaurants</a><a href="movies.html"><span>▣</span> Movies</a>
+</div>
+<form id="trainSearchForm" class="search-form">
+<div class="trip-options"><label><input type="radio" name="tripType" value="oneway" checked> One way</label><label><input type="radio" name="tripType" value="round"> Round trip</label><span>Return date applies to round trips only.</span></div>
+<div class="search-fields">
+<label class="search-field"><span class="field-symbol">♧</span><span><small>FROM STATION</small><select id="fromStation"><option>Dhaka (Kamalapur)</option><option>Airport</option><option>Chattogram</option><option>Sylhet</option><option>Rajshahi</option><option>Khulna</option><option>Rajshahi</option><option>Cox's Bazar</option></select></span></label>
+<button type="button" class="swap" id="swapStations" aria-label="Swap stations">⇄</button>
+<label class="search-field"><span class="field-symbol">♧</span><span><small>TO STATION</small><select id="toStation"><option>Chattogram</option><option>Dhaka (Kamalapur)</option><option>Airport</option><option>Sylhet</option><option>Rajshahi</option><option>Khulna</option><option>Cox's Bazar</option></select></span></label>
+<label class="search-field"><span class="field-symbol">▦</span><span><small>JOURNEY DATE</small><input id="journeyDate" type="date" required></span></label>
+<label class="search-field return-field" id="returnField"><span class="field-symbol">▦</span><span><small>RETURN DATE</small><input id="returnDate" type="date" disabled></span></label>
+<label class="search-field passenger-field"><span class="field-symbol">♙</span><span><small>PASSENGERS</small><select id="passengers"><option>1 adult</option><option>2 adults</option><option>3 adults</option><option>4 adults</option><option>5 adults</option></select></span></label>
+<button class="primary-btn" type="submit">Search Trains <b>→</b></button>
+</div><p id="searchMessage" class="search-message" aria-live="polite"></p>
+</form></div>
+<p class="hero-footnote">Secure payments <i>·</i> No hidden fees <i>·</i> All your plans in one place</p>
+</div></section>
+<section class="results-area"><div class="train-container">
+<div class="demo-notice"><b>ⓘ</b> Demonstration only. Schedules, BDT fares and seat availability are illustrative — not live Bangladesh Railway data.</div>
+<div class="results-layout">
+<aside class="filters"><div class="filter-title"><h2>Filters</h2><button id="resetFilters" type="button">Reset all</button></div>
+<div class="filter-group"><h3>Departure time</h3><label><input type="checkbox" class="time-filter" value="early"> Early morning · 00:00–06:00</label><label><input type="checkbox" class="time-filter" value="morning"> Morning · 06:00–12:00</label><label><input type="checkbox" class="time-filter" value="afternoon"> Afternoon · 12:00–18:00</label><label><input type="checkbox" class="time-filter" value="evening"> Evening · 18:00–24:00</label></div>
+<div class="filter-group"><h3>Arrival time</h3><label><input type="checkbox" class="arrival-filter" value="early"> Early morning · 00:00–06:00</label><label><input type="checkbox" class="arrival-filter" value="morning"> Morning · 06:00–12:00</label><label><input type="checkbox" class="arrival-filter" value="afternoon"> Afternoon · 12:00–18:00</label><label><input type="checkbox" class="arrival-filter" value="evening"> Evening · 18:00–24:00</label></div>
+<div class="filter-group"><h3>Train type</h3><label><input type="checkbox" class="type-filter" value="intercity"> Intercity</label><label><input type="checkbox" class="type-filter" value="mail"> Mail / Express</label></div>
+<div class="filter-group"><h3>Available seats</h3><label><input type="checkbox" id="availableOnly" checked> Show available seats only</label><small>Illustrative availability for 1 passenger.</small></div>
+<div class="filter-group"><h3>Class</h3><label><input type="checkbox" class="class-filter" value="Shovon Chair"> Shovon Chair</label><label><input type="checkbox" class="class-filter" value="Snigdha"> Snigdha</label><label><input type="checkbox" class="class-filter" value="AC Seat"> AC Seat</label><label><input type="checkbox" class="class-filter" value="AC Berth"> AC Berth</label></div>
+<div class="filter-group price-filter"><h3>Price range · per person</h3><input type="range" id="maxPrice" min="300" max="1500" step="25" value="1500"><div><span>BDT 300</span><strong id="maxPriceLabel">BDT 1,500</strong></div></div>
+</aside>
+<section class="results-content"><div class="results-heading"><h2 id="routeHeading">Dhaka → Chattogram</h2><p id="journeySummary">Fri, 30 Oct 2026 · 1 adult · One way · 3 demonstration trains</p></div>
+<div class="date-strip" id="dateStrip"><button type="button" data-offset="-1"><strong>Previous day</strong><small>Change date</small></button><button type="button" class="active" data-offset="0"><strong>Selected journey</strong><small>Selected journey</small></button><button type="button" data-offset="1"><strong>Next day</strong><small>Change date</small></button><button type="button" data-offset="2"><strong>Following day</strong><small>Change date</small></button></div>
+<div class="sort-row"><span>Sort by</span><button class="sort-btn active" data-sort="departure">Departure time ↑</button><button class="sort-btn" data-sort="price">Lowest price</button><button class="sort-btn" data-sort="duration">Shortest duration</button></div>
+<div id="trainResults" class="train-results">
+<article class="train-card" data-departure="07:00" data-arrival="11:55" data-price="345" data-duration="295" data-type="intercity" data-classes="Shovon Chair,Snigdha,AC Seat" data-available="true"><div class="train-card-main"><div class="train-name"><span class="train-mini-icon"><img src="assets/icons/train.png" alt=""></span><span><strong>Sonar Bangla Express</strong><small>#788 · Intercity · Direct</small></span><small class="demo-label">Demo schedule</small></div><div class="journey-times"><div><strong>07:00</strong><span>Dhaka (Kamalapur)</span><small class="date-label">30 Oct, Fri</small></div><div class="duration"><small>4h 55m</small><span></span><small>Direct</small></div><div class="arrival"><strong>11:55</strong><span>Chattogram</span><small class="date-label">30 Oct, Fri</small></div></div><div class="fare-options"><button data-class="Shovon Chair" data-fare="345" data-seats="42"><b>Shovon Chair</b><small>42 seats</small><strong>BDT 345</strong></button><button data-class="Snigdha" data-fare="656" data-seats="18"><b>Snigdha</b><small>18 seats</small><strong>BDT 656</strong></button><button data-class="AC Seat" data-fare="788" data-seats="8"><b>AC Seat</b><small>8 seats</small><strong>BDT 788</strong></button></div></div><div class="train-card-footer"><div><small>From · per person</small><strong>BDT 345</strong></div><button class="view-seats" type="button">View Seats <b>→</b></button></div><div class="seat-panel" hidden></div></article>
+<article class="train-card" data-departure="16:30" data-arrival="21:25" data-price="345" data-duration="295" data-type="intercity" data-classes="Shovon Chair,Snigdha,AC Seat" data-available="true"><div class="train-card-main"><div class="train-name"><span class="train-mini-icon"><img src="assets/icons/train.png" alt=""></span><span><strong>Subarna Express</strong><small>#702 · Intercity · Direct</small></span><small class="demo-label">Demo schedule</small></div><div class="journey-times"><div><strong>16:30</strong><span>Dhaka (Kamalapur)</span><small class="date-label">30 Oct, Fri</small></div><div class="duration"><small>4h 55m</small><span></span><small>Direct</small></div><div class="arrival"><strong>21:25</strong><span>Chattogram</span><small class="date-label">30 Oct, Fri</small></div></div><div class="fare-options"><button data-class="Shovon Chair" data-fare="345" data-seats="26"><b>Shovon Chair</b><small>26 seats</small><strong>BDT 345</strong></button><button data-class="Snigdha" data-fare="656" data-seats="12"><b>Snigdha</b><small>12 seats</small><strong>BDT 656</strong></button><button data-class="AC Seat" data-fare="788" data-seats="6"><b>AC Seat</b><small>6 seats</small><strong>BDT 788</strong></button></div></div><div class="train-card-footer"><div><small>From · per person</small><strong>BDT 345</strong></div><button class="view-seats" type="button">View Seats <b>→</b></button></div><div class="seat-panel" hidden></div></article>
+<article class="train-card" data-departure="23:30" data-arrival="06:20" data-price="345" data-duration="410" data-type="intercity" data-classes="Shovon Chair,Snigdha,AC Berth" data-available="true"><div class="train-card-main"><div class="train-name"><span class="train-mini-icon"><img src="assets/icons/train.png" alt=""></span><span><strong>Turna Express</strong><small>#742 · Intercity · Direct</small></span><small class="demo-label">Demo schedule</small></div><div class="journey-times"><div><strong>23:30</strong><span>Dhaka (Kamalapur)</span><small class="date-label">30 Oct, Fri</small></div><div class="duration"><small>6h 50m</small><span></span><small>Direct</small></div><div class="arrival"><strong>06:20 <i>+1 day</i></strong><span>Chattogram</span><small class="date-label">31 Oct, Sat</small></div></div><div class="fare-options"><button data-class="Shovon Chair" data-fare="345" data-seats="54"><b>Shovon Chair</b><small>54 seats</small><strong>BDT 345</strong></button><button data-class="Snigdha" data-fare="656" data-seats="10"><b>Snigdha</b><small>10 seats</small><strong>BDT 656</strong></button><button data-class="AC Berth" data-fare="1179" data-seats="4"><b>AC Berth</b><small>4 seats</small><strong>BDT 1,179</strong></button></div></div><div class="train-card-footer"><div><small>From · per person</small><strong>BDT 345</strong></div><button class="view-seats" type="button">View Seats <b>→</b></button></div><div class="seat-panel" hidden></div></article>
+</div><p class="time-note">All times are local (Bangladesh, UTC+6). +1 day means arrival on the following day. Sample fares are per person in BDT; final charges would be shown before payment.</p>
+<div class="alternate-route"><div><small>ANOTHER WAY TO GET AWAY</small><strong>Dhaka → Sylhet</strong><p>Explore a different route. Demo search suggestion.</p></div><button type="button" id="alternateRoute">→ Search this route</button></div>
+</section></div></div></section>
+</main>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a class="brand footer-logo" href="index.html"><img src="assets/chalo-logo.png" class="brand-logo" alt="">চলো</a><p>Go somewhere. Do something. Make it a little more you.</p><div class="social-links"><a href="#">◎</a><a href="#">f</a><a href="#">▣</a></div></div><div class="footer-column"><h3>Explore</h3><a href="bus.html">Bus</a><a href="train.html">Train</a><a href="ferry.html">River Ferries</a><a href="hotel.html">Hotels</a><a href="restaurant.html">Restaurants</a><a href="movies.html">Movies</a></div><div class="footer-column"><h3>Chalo</h3><a href="index.html#about">About us</a><a href="#">How it works</a><a href="#">Our partners</a><a href="#">Travel inspiration</a><a href="#">Careers</a></div><div class="footer-column"><h3>We're here to help</h3><a href="#">Help center</a><a href="#">Manage a booking</a><a href="#">Cancellation policies</a><a href="#">Contact us</a><a href="#">24/7 customer support</a></div></div><div class="footer-bottom"><span>© 2026 Chalo. All rights reserved.</span><div><a href="#">Privacy policy</a><a href="#">Terms of service</a><a href="#">Cookies</a></div><span>◎ English · BDT ৳</span></div></footer>
+</body></html>

@@ -1,0 +1,164 @@
+/* =========================================================
+   SECTION 0: DESIGN TOKENS / RESET
+   ========================================================= */
+:root{--charcoal:#292524;--charcoal-2:#242221;--navy:#102f40;--blue:#0785ce;--cyan:#65f2ed;--mint:#d8fffa;--teal:#205f60;--yellow:#ffd329;--cream:#f0ebd2;--peach:#ffe1b8;--ink:#153345;--muted:#6e818c;--line:#d9e4e9;--white:#fff;--container:1110px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"DM Sans",Arial,sans-serif;font-size:13px;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}.container{width:min(var(--container),calc(100% - 88px));margin:0 auto}.section-kicker{margin:0 0 3px;color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.15px}.section-title{margin:0;font-size:25px;line-height:1.2;font-weight:500;letter-spacing:-.6px}.section-intro{margin:7px 0 0;font-size:12px;color:#1e2b2f}.menu-toggle{display:none}
+
+/* =========================================================
+   SECTION 1: HEADER / NAVIGATION
+   ========================================================= */
+.site-header{height:67px;background:#fff;position:relative;z-index:10}.header-inner{height:100%;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center}.brand{display:inline-flex;align-items:center;gap:7px;width:max-content}.brand-symbol{display:grid;place-items:center;width:26px;height:26px;border-radius:6px;background:#0785c9;color:white;font-size:18px;font-weight:700;box-shadow:inset 0 0 0 2px rgba(255,255,255,.2)}.brand-bengali{font-size:22px;line-height:1;color:#183849;font-weight:800;letter-spacing:-1px}.main-nav{display:flex;align-items:center;justify-content:center;gap:30px;height:100%}.main-nav a{position:relative;display:flex;align-items:center;height:100%;font-size:11px;font-weight:600;color:#173346}.main-nav a.active{color:#00a6a6}.main-nav a.active:after,.main-nav a:nth-child(2):after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:#0785ce}.main-nav a:nth-child(2):after{background:#0785ce}.header-actions{display:flex;justify-content:flex-end;align-items:center;gap:20px}.login-link{font-size:11px;color:#385366}.register-btn{padding:11px 18px;background:#000;color:#fff;border:1px solid #0785ce;border-radius:7px;font-size:10px}
+
+/* =========================================================
+   SECTION 2: HERO / GIFT BOOKING INTRO
+   ========================================================= */
+.hero{background:var(--charcoal);color:#fff;padding:44px 0 20px}.hero-layout{min-height:265px;display:grid;grid-template-columns:1.08fr .92fr;gap:36px}.hero-copy{padding-top:0}.eyebrow{margin:0 0 19px;color:var(--yellow);font-size:9px;font-weight:800;letter-spacing:.1px}.hero h1{margin:0;font-size:clamp(36px,4.2vw,49px);line-height:1.03;letter-spacing:-1.2px;font-style:italic;font-weight:700}.hero h1 span{color:var(--yellow)}.hero-description{max-width:400px;margin:20px 0 17px;color:var(--cyan);font-size:12px;line-height:1.65}.rating-proof{display:flex;align-items:center;gap:9px}.star-bubble{width:24px;height:24px;display:grid;place-items:center;flex-shrink:0;background:white;color:#f8c51c;border-radius:50%;font-size:14px}.rating-proof strong,.rating-proof small{display:block;font-size:9px;font-weight:500}.rating-proof small{margin-top:3px;color:var(--cyan);font-size:8px}.hero-gift{position:relative;min-height:260px}.gift-illustration{position:absolute;top:-2px;left:30%;width:190px;height:170px;display:flex;align-items:center;justify-content:center;animation:giftFloat 4.8s ease-in-out infinite;filter:drop-shadow(0 12px 10px rgba(0,0,0,.18))}.gift-image{display:block;width:100%;height:100%;object-fit:contain}.gift-illustration:hover{animation-play-state:paused}@keyframes giftFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-11px) rotate(1deg)}}.gift-callout{position:absolute;right:18px;bottom:5px;width:min(100%,390px);min-height:90px;padding:14px 14px 13px;border-radius:11px;background:white;color:#173345;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;box-shadow:0 7px 20px rgba(0,0,0,.12)}.gift-callout strong{display:block;font-size:20px;line-height:1.15;font-weight:600;letter-spacing:-.5px}.gift-callout small{display:block;margin-top:6px;font-size:12px;line-height:1.3}.gift-callout b{align-self:center;color:var(--blue);font-size:19px}
+
+/* =========================================================
+   SECTION 3: BOOKING TABS / SEARCH FORM
+   ========================================================= */
+.booking-widget{overflow:hidden;border:1px solid #9dd9d5;border-radius:10px;background:#205f60}.booking-tabs{height:51px;display:grid;grid-template-columns:repeat(6,1fr);align-items:stretch;background:var(--mint);color:#102e3c}.booking-tab{position:relative;display:flex;justify-content:center;align-items:center;gap:8px;border:0;background:transparent;color:#183743;font-size:10px;white-space:nowrap}.booking-tab span{font-size:14px;color:#526f76}.booking-tab.active{color:#0785ce}.booking-tab.active:after{content:"";position:absolute;bottom:0;left:10%;right:10%;height:2px;background:#0785ce}.booking-form{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:13px 16px 14px}.search-layout{min-width:0;display:grid;grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr) minmax(0,.9fr) minmax(0,.85fr);align-items:center;gap:8px}.search-layout[data-layout=hotels],.search-layout[data-layout=restaurants],.search-layout[data-layout=movies]{grid-template-columns:repeat(4,minmax(0,1fr))}.search-layout[hidden]{display:none}.search-layout .booking-field{width:100%}.field-text select{cursor:pointer}.search-layout .swap-icon{display:block}.booking-field{min-width:0;min-height:45px;display:flex;align-items:center;gap:8px;padding:7px 8px;border:1px solid rgba(215,255,250,.58);border-radius:6px;color:white}.field-icon{flex-shrink:0;font-size:15px;color:#d8fffa}.field-text{display:block;min-width:0}.field-text small{display:block;margin-bottom:3px;color:#d6e8df;font-size:7px;line-height:1;letter-spacing:.3px}.field-text input,.field-text select{display:block;width:100%;min-width:0;padding:0;border:0;outline:0;background:transparent;color:var(--yellow);font-size:9px}.field-text input[type=date]{color-scheme:dark}.field-text select{appearance:none}.field-text select option{background:#205f60;color:#fff}.swap-icon{color:#e7fffb;text-align:center;font-size:15px}.search-button{height:36px;display:flex;align-items:center;justify-content:center;gap:9px;padding:0 14px;border:0;border-radius:6px;background:#fff;color:#19384a;font-size:9px;font-weight:700;white-space:nowrap}.search-button span{font-size:15px}.search-button:hover{background:#d8fffa}.booking-feedback{margin:0;padding:0 16px;color:#e8fff9;font-size:10px}.booking-feedback:not(:empty){padding-bottom:12px}.trust-strip{display:flex;align-items:center;gap:18px;margin-top:12px;color:#f2eee8;font-size:8px}.trust-strip i{font-style:normal;color:#8b8a84}.shield{color:var(--yellow);font-size:13px}
+
+/* =========================================================
+   SECTION 4: SERVICE CATEGORY CARDS
+   ========================================================= */
+.services-section{padding:40px 0 39px;background:var(--cream)}.services-section .section-kicker{margin-bottom:2px}.services-section .section-title{font-size:25px}.services-section .section-intro{margin-top:9px}.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 15px;margin-top:22px}.service-card{position:relative;min-height:137px;display:grid;grid-template-columns:28px 1fr;grid-template-rows:30px 1fr 16px;align-items:center;column-gap:9px;padding:12px;border:2px solid #e5c300;border-radius:10px;background:var(--charcoal);color:white;transition:transform .2s,box-shadow .2s}.service-card:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(36,34,33,.13)}.service-icon{width:27px;height:27px;display:grid;place-items:center;overflow:hidden;border-radius:7px;background:var(--yellow)}.service-icon img{display:block;width:100%;height:100%;padding:3px;object-fit:contain}.service-name{font-size:13px;color:#f8f6f0}.service-card p{grid-column:1/-1;align-self:start;margin:9px 0 6px;color:#e1ddd6;font-size:9px;line-height:1.55}.service-link{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;color:#e1ddd6;font-size:9px}.service-link b{color:var(--yellow);font-size:15px;font-weight:500}
+
+/* =========================================================
+   SECTION 5: FEATURED DESTINATIONS / EXPERIENCES
+   ========================================================= */
+.inspiration-section{padding:39px 0 37px;background:var(--peach)}.inspiration-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:19px}.inspiration-heading .section-kicker{font-size:9px;margin-bottom:5px}.editorial-title{margin:0;font-family:"Playfair Display",Georgia,serif;font-size:27px;line-height:1.2;font-weight:600;letter-spacing:.1px;color:#0e344b}.inspiration-heading .section-intro{font-size:10px;color:#365064;margin-top:6px}.explore-link{flex-shrink:0;margin-bottom:3px;font-size:9px;font-weight:700;color:#151f22}.explore-link span{margin-left:8px;font-size:14px}.destination-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.destination-card{overflow:hidden;border-radius:9px;background:white;min-width:0}.destination-image{display:block;height:143px;background-size:cover;background-position:center;transition:filter .2s}.destination-image:hover{filter:saturate(1.12)}.hotel-image{background-image:url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85")}.movie-image{background-image:url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=85")}.cox-image{background-image:url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=85")}.destination-content{padding:12px 13px 9px}.destination-content h3{overflow:hidden;margin:0 0 7px;font-size:12px;font-weight:500;white-space:nowrap;text-overflow:ellipsis;color:#162d3a}.destination-content p{margin:0 0 6px;color:#71828c;font-size:9px}.destination-content small{display:block;overflow:hidden;color:#80919a;font-size:8px;white-space:nowrap;text-overflow:ellipsis}.card-arrow{display:block;margin-top:9px;padding-top:7px;border-top:1px solid #e1e8eb;color:#0785ce;font-size:14px}.price-disclaimer{margin:17px 0 0;color:#89785e;font-size:7px}
+
+/* =========================================================
+   SECTION 6: TRUST / BENEFITS
+   ========================================================= */
+.benefits-section{padding:39px 0 40px;background:#fff}.benefits-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px}.benefits-heading h2{margin:0;font-size:21px;font-weight:500;letter-spacing:-.4px}.community-rating{font-size:8px;color:#34536a;white-space:nowrap}.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px}.benefit-card{position:relative;min-height:82px;padding:33px 0 0;background:linear-gradient(to bottom,#c6efff 0,#c6efff 100%);background-size:100% 82px;background-repeat:no-repeat}.benefit-icon{position:absolute;top:4px;left:5px;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:#eaf8ff;color:#0785ce;font-size:12px}.benefit-card h3{margin:0 0 8px;font-size:10px;font-weight:500;color:#173849}.benefit-card p{margin:0;color:#647e8a;font-size:8px;line-height:1.55}.signup-banner{display:flex;align-items:center;justify-content:space-between;gap:25px;margin-top:45px;padding:27px 27px 25px;border-radius:13px;background:#edf7fc}.signup-banner h2{margin:0 0 7px;font-size:21px;font-weight:500;letter-spacing:-.4px}.signup-banner p{max-width:570px;margin:0;color:#718491;font-size:10px;line-height:1.65}.signup-action{display:flex;flex-direction:column;align-items:center;gap:7px;flex-shrink:0}.signup-cta{display:flex;align-items:center;gap:12px;padding:11px 15px;border-radius:6px;background:#087dc0;color:#fff;font-size:9px;font-weight:700}.signup-cta:hover{background:#056ba5}.signup-cta span{font-size:14px}.signup-action small{font-size:7px;color:#81919b}
+
+/* =========================================================
+   SECTION 8: FOOTER
+   ========================================================= */
+.site-footer{background:#102f40;color:#d5e3e9}.footer-main{display:grid;grid-template-columns:1.6fr 1.1fr 1.1fr 1.1fr;gap:30px;padding:31px 0 27px}.footer-brand p{margin:13px 0 11px;color:#adc0ca;font-size:9px;line-height:1.7}.footer-brand .brand-bengali{color:white}.social-links{display:flex;gap:14px}.social-links a{color:#d4e2e8;font-size:13px}.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:10px}.footer-column h3{margin:2px 0 1px;color:white;font-size:9px;font-weight:500}.footer-column a{color:#adc0ca;font-size:8px}.footer-column a:hover,.legal-links a:hover{color:white}.footer-bottom{min-height:36px;display:grid;grid-template-columns:1fr 1.4fr 1fr;align-items:center;gap:10px;border-top:1px solid rgba(255,255,255,.13);color:#a5bbc6;font-size:7px}.legal-links{display:flex;justify-content:center;gap:20px}.locale-button{justify-self:end;padding:4px 0;border:0;background:transparent;color:#a5bbc6;font-size:7px}
+
+/* =========================================================
+   SECTION 9: RESPONSIVE LAYOUTS
+   ========================================================= */
+@media(max-width:900px){.container{width:calc(100% - 48px)}.hero-layout{gap:20px}.hero h1{font-size:41px}.gift-callout{right:0;width:100%}.booking-form{grid-template-columns:1fr}.search-layout{grid-template-columns:minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)}.search-layout[data-layout=hotels],.search-layout[data-layout=restaurants],.search-layout[data-layout=movies]{grid-template-columns:repeat(4,minmax(0,1fr))}.search-button{height:38px}.services-grid{gap:12px}.service-card{min-height:145px}.benefits-grid{gap:20px}}
+@media(max-width:650px){.container{width:calc(100% - 32px)}.site-header{height:60px}.header-inner{grid-template-columns:1fr auto auto;gap:15px}.menu-toggle{display:flex;flex-direction:column;justify-content:center;gap:4px;order:3;width:31px;height:31px;border:1px solid #d9e4e9;border-radius:6px;background:white}.menu-toggle span{width:13px;height:2px;margin:auto;background:#173849}.main-nav{display:none;position:absolute;top:55px;left:16px;right:16px;height:auto;padding:10px;border:1px solid #dbe5e8;border-radius:9px;background:white;box-shadow:0 12px 28px #102f4020}.main-nav.open{display:flex;flex-direction:column;align-items:stretch;gap:0}.main-nav a{height:auto;padding:12px}.main-nav a:after{display:none}.header-actions{gap:10px}.register-btn{padding:9px 12px}.hero{padding:30px 0 18px}.hero-layout{grid-template-columns:1fr;gap:0}.hero-copy{padding-bottom:8px}.hero h1{font-size:clamp(38px,10vw,49px)}.hero-description{margin:15px 0 14px}.hero-gift{min-height:210px;margin-top:-2px}.gift-illustration{top:-2px;left:34%;transform:scale(.86) rotate(-23deg);transform-origin:top left}.gift-callout{bottom:5px;left:0;right:0;width:100%;min-height:82px;padding:12px}.gift-callout strong{font-size:18px}.gift-callout small{font-size:11px}.booking-tabs{height:auto;grid-template-columns:repeat(3,1fr)}.booking-tab{min-height:40px;font-size:9px}.booking-form{grid-template-columns:1fr;gap:8px;padding:10px}.search-layout{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.search-layout[data-layout=transport]{grid-template-columns:repeat(2,minmax(0,1fr))}.search-layout .swap-icon{display:none}.search-layout .booking-field{min-height:48px}.search-button{grid-column:1/-1}.trust-strip{flex-wrap:wrap;gap:10px;font-size:8px}.services-section,.inspiration-section,.benefits-section{padding:32px 0}.section-title{font-size:23px}.services-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.service-card{min-height:145px;padding:10px;grid-template-columns:27px 1fr;column-gap:7px}.service-name{font-size:12px}.service-card p{font-size:9px}.inspiration-heading{align-items:flex-start;flex-direction:column;gap:12px}.editorial-title{font-size:25px}.explore-link{align-self:flex-end;margin-top:-4px}.destination-grid{grid-template-columns:1fr;gap:13px}.destination-image{height:190px}.destination-content{padding:12px}.destination-content h3{font-size:13px}.benefits-heading{align-items:flex-start;flex-direction:column;gap:8px}.benefits-heading h2{font-size:21px}.benefits-grid{grid-template-columns:1fr;gap:14px}.benefit-card{min-height:82px;padding:33px 10px 8px}.signup-banner{align-items:flex-start;flex-direction:column;margin-top:30px;padding:23px 18px}.signup-banner h2{font-size:20px}.signup-action{align-items:flex-start}.footer-main{grid-template-columns:repeat(2,1fr);gap:25px 20px;padding:28px 0 24px}.footer-bottom{grid-template-columns:1fr;gap:12px;padding:13px 0}.legal-links{justify-content:flex-start;flex-wrap:wrap}.locale-button{justify-self:start}}
+@media(max-width:360px){.brand-bengali{font-size:19px}.header-actions{gap:7px}.login-link{font-size:10px}.register-btn{font-size:9px;padding:8px}.booking-tab{gap:4px;font-size:8px}.services-grid{grid-template-columns:1fr}.service-card{min-height:125px}.gift-callout strong{font-size:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important}.gift-illustration{animation:none}}
+
+/* =========================================================
+   SECTION: BOOKING SEARCH — LARGER, MORE READABLE TEXT
+   ========================================================= */
+
+/* Category tabs */
+.booking-tab {
+   font-size: 14px;
+   font-weight: 500;
+}
+
+.booking-tab span {
+   font-size: 16px;
+}
+
+/* Search form labels: FROM, TO, DEPARTURE, etc. */
+.booking-field .field-text small {
+   font-size: 10px;
+   font-weight: 600;
+   letter-spacing: 0.3px;
+}
+
+/* Selected values and dropdown text */
+.booking-field select,
+.booking-field input {
+   font-family: inherit;
+   font-size: 13px;
+   font-weight: 500;
+}
+
+/* Field icons */
+.booking-field .field-icon {
+   font-size: 17px;
+}
+
+/* Location swap icon */
+.swap-icon {
+   font-size: 20px;
+}
+
+/* Search button */
+.search-button {
+   font-size: 13px;
+   font-weight: 600;
+}
+
+.search-button span {
+   font-size: 19px;
+}
+
+/* Security information below the search bar */
+.trust-strip {
+   font-size: 11px;
+}
+
+.trust-strip .shield {
+   font-size: 15px;
+}
+
+/* Search feedback message */
+.booking-feedback {
+   font-size: 12px;
+   line-height: 1.5;
+}
+
+/* Keep the search section readable on smaller screens */
+@media (max-width: 768px) {
+   .booking-tab {
+       font-size: 12px;
+   }
+
+   .booking-field .field-text small {
+       font-size: 9px;
+   }
+
+   .booking-field select,
+   .booking-field input {
+       font-size: 12px;
+   }
+
+   .search-button {
+       font-size: 13px;
+   }
+
+   .trust-strip {
+       font-size: 10px;
+   }
+}
+/* FIX: keep the optional brand image confined to the header logo slot.
+   The source logo is a large square PNG; never let its intrinsic dimensions
+   affect the homepage layout. */
+.site-header .brand-logo {
+  display: inline-block !important;
+  width: 30px !important;
+  height: 30px !important;
+  max-width: 30px !important;
+  max-height: 30px !important;
+  min-width: 30px;
+  min-height: 30px;
+  object-fit: contain;
+  flex: 0 0 30px;
+  position: static !important;
+  transform: none !important;
+}
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+}
+.site-header .brand-bengali {
+  display: inline-block;
+  white-space: nowrap;
+}

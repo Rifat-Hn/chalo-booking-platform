@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Chalo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/stylescheckout.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <img src="assets/chalo-logo.png" alt="Chalo">
+        </a>
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="train.html">Trains</a>
+            <a href="bus.html">Buses</a>
+            <a href="ferry.html">Ferries</a>
+            <a href="hotel.html">Hotels</a>
+            <a href="restaurant.html">Restaurants</a>
+            <a href="movies.html">Movies</a>
+        </nav>
+        <div class="header-actions">
+            <a href="cart.html" class="login-link">Cart</a>
+        </div>
+    </div>
+</header>
+
+<main class="checkout-page">
+    <section class="checkout-heading">
+        <div>
+            <p class="checkout-eyebrow">COMPLETE YOUR BOOKING</p>
+            <h1>Checkout</h1>
+            <p>Review your booking details and complete your order.</p>
+        </div>
+
+        <div class="checkout-progress">
+            <span class="progress-done">Cart</span>
+            <span class="progress-line"></span>
+            <span class="progress-current">Checkout</span>
+            <span class="progress-line"></span>
+            <span>Confirmation</span>
+        </div>
+    </section>
+
+    <div id="checkoutEmpty" class="checkout-empty" hidden>
+        <h2>Your checkout is empty</h2>
+        <p>Add an item to your cart before proceeding.</p>
+        <a href="index.html" class="checkout-primary-btn">Explore Chalo</a>
+    </div>
+
+    <form id="checkoutForm" class="checkout-layout">
+        <div class="checkout-main">
+
+            <section class="checkout-section">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-number">01</span>
+                        <h2>Booking Type</h2>
+                    </div>
+                </div>
+
+                <div class="booking-type-options">
+                    <label class="booking-type-card">
+                        <input type="radio" name="bookingType" value="self" checked>
+                        <span class="booking-type-content">
+                            <strong>Self Booking</strong>
+                            <small>I'm booking for myself.</small>
+                        </span>
+                    </label>
+
+                    <label class="booking-type-card">
+                        <input type="radio" name="bookingType" value="gift">
+                        <span class="booking-type-content">
+                            <strong>Gift Booking</strong>
+                            <small>I'm booking for someone else.</small>
+                        </span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="checkout-section">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-number">02</span>
+                        <h2>Purchaser Information</h2>
+                    </div>
+                </div>
+
+                <div class="checkout-form-grid">
+                    <div class="form-field">
+                        <label for="customerName">Full Name *</label>
+                        <input type="text" id="customerName" name="customerName"
+                               placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="customerPhone">Phone Number *</label>
+                        <input type="tel" id="customerPhone" name="customerPhone"
+                               placeholder="01XXXXXXXXX" required>
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="customerEmail">Email Address *</label>
+                        <input type="email" id="customerEmail" name="customerEmail"
+                               placeholder="Enter your email address" required>
+                    </div>
+                </div>
+            </section>
+
+            <section class="checkout-section" id="giftRecipientSection" hidden>
+                <div class="section-heading">
+                    <div>
+                        <span class="section-number">03</span>
+                        <h2>Gift Recipient Information</h2>
+                    </div>
+                </div>
+
+                <p class="section-description">
+                    Enter the details of the person receiving this booking.
+                </p>
+
+                <div class="checkout-form-grid">
+                    <div class="form-field">
+                        <label for="recipientName">Recipient Name *</label>
+                        <input type="text" id="recipientName" name="recipientName"
+                               placeholder="Recipient's full name">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="recipientPhone">Recipient Phone *</label>
+                        <input type="tel" id="recipientPhone" name="recipientPhone"
+                               placeholder="01XXXXXXXXX">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="recipientEmail">Recipient Email</label>
+                        <input type="email" id="recipientEmail" name="recipientEmail"
+                               placeholder="Recipient's email">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="recipientAddress">Recipient Address</label>
+                        <input type="text" id="recipientAddress" name="recipientAddress"
+                               placeholder="Recipient's address">
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="giftMessage">Gift Message</label>
+                        <textarea id="giftMessage" name="giftMessage" rows="4"
+                                  placeholder="Write a message for the recipient..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section class="checkout-section">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-number" id="paymentSectionNumber">04</span>
+                        <h2>Payment Method</h2>
+                    </div>
+                </div>
+
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="paymentMethod" value="demo_card" checked>
+                        <span>
+                            <strong>Card Payment</strong>
+                            <small>Demo payment for project testing</small>
+                        </span>
+                    </label>
+
+                    <label class="payment-option">
+                        <input type="radio" name="paymentMethod" value="demo_mobile">
+                        <span>
+                            <strong>Mobile Banking</strong>
+                            <small>Demo payment for project testing</small>
+                        </span>
+                    </label>
+                </div>
+
+                <p class="demo-payment-note">
+                    This is a demonstration checkout. No real payment will be processed.
+                </p>
+            </section>
+
+            <div class="checkout-terms">
+                <label>
+                    <input type="checkbox" id="agreeTerms" required>
+                    <span>I confirm that the information provided above is correct.</span>
+                </label>
+            </div>
+        </div>
+
+        <aside class="checkout-sidebar">
+            <section class="order-summary">
+                <h2>Order Summary</h2>
+                <p class="summary-caption">Review your selected bookings.</p>
+
+                <div id="checkoutItems" class="checkout-items">
+                    <!-- Items are loaded from the cart by checkout.js -->
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-row">
+                    <span>Items</span>
+                    <strong id="checkoutItemCount">0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <strong id="checkoutSubtotal">৳0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Service Fee</span>
+                    <strong id="checkoutFees">৳0</strong>
+                </div>
+
+                <div class="summary-row discount-row" id="checkoutDiscountRow" hidden>
+                    <span>Discount</span>
+                    <strong id="checkoutDiscount">-৳0</strong>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-total">
+                    <span>Total Payable</span>
+                    <strong id="checkoutTotal">৳0</strong>
+                </div>
+
+                <button type="submit" id="placeOrderBtn" class="place-order-btn">
+                    Confirm & Pay
+                </button>
+
+                <a href="cart.html" class="back-to-cart">← Back to Cart</a>
+
+                <p class="secure-checkout">
+                    <span>🔒</span> Your checkout information is handled securely.
+                </p>
+            </section>
+        </aside>
+    </form>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>© 2026 Chalo. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/checkout.js"></script>
+</body>
+</html>

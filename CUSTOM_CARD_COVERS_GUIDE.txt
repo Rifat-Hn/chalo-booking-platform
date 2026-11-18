@@ -1,0 +1,51 @@
+CHALO – CUSTOM CARD COVER IMAGES
+=================================
+
+The existing design and booking functionality are preserved. Custom images are configured by folder and by service name. No database changes are required.
+
+1) Copy your own images into the matching folders:
+   assets/covers/hotels/
+   assets/covers/movies/
+   assets/covers/restaurants/
+   assets/covers/buses/
+   assets/covers/trains/
+   assets/covers/ferries/
+   assets/covers/events/ (reserved for event cards)
+
+2) Open js/card-covers.js. Add each service name and relative image path to the matching category map. Example:
+
+   hotels: {
+     "Sea Pearl Beach Resort": "assets/covers/hotels/sea-pearl.jpg",
+     "The Intercontinental Dhaka": "assets/covers/hotels/intercontinental.jpg"
+   },
+
+   movies: {
+     "Borbaad": "assets/covers/movies/borbaad-poster.jpg"
+   },
+
+   restaurants: {
+     "Bella Italia": "assets/covers/restaurants/bella-italia.jpg"
+   },
+
+   buses: {
+     "Green Line Paribahan": "assets/covers/buses/green-line.jpg"
+   },
+
+   trains: {
+     "Suborno Express": "assets/covers/trains/suborno-express.jpg"
+   },
+
+   ferries: {
+     "Sundarban": "assets/covers/ferries/sundarban-launch.jpg"
+   }
+
+IMPORTANT:
+- The key must match the service/movie/operator/vessel name returned by the database. Use the visible card title or operator name.
+- Keep the path relative to the project root, starting with assets/covers/...
+- Custom mappings override the database image path. If no custom mapping exists, the existing database image or existing fallback remains in use.
+- Use JPG/JPEG, PNG, or WebP. Recommended card cover ratio: 16:9 for hotels, restaurants, buses, trains and ferries; movie posters work best at 2:3.
+- Use reasonably compressed images (ideally under 500 KB each) for faster loading.
+- After adding or changing files, hard-refresh the browser with Ctrl+F5.
+- File names and paths are case-sensitive on many hosting servers.
+
+No SQL import is needed. The project continues to load listings, schedules, seats, rooms and reservations from the existing database APIs.

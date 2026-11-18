@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | Chalo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/stylesconfirmation.css">
+    <script src="js/order-confirmation.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <img src="assets/chalo-logo.png" alt="Chalo">
+        </a>
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="train.html">Trains</a>
+            <a href="bus.html">Buses</a>
+            <a href="ferry.html">Ferries</a>
+            <a href="hotel.html">Hotels</a>
+            <a href="restaurant.html">Restaurants</a>
+            <a href="movies.html">Movies</a>
+        </nav>
+        <div class="header-actions">
+            <a href="cart.html" class="login-link">Cart</a>
+        </div>
+    </div>
+</header>
+
+<main class="confirmation-page">
+
+    <section id="confirmationContent" hidden>
+
+        <div class="confirmation-success">
+            <div class="success-icon">✓</div>
+            <p class="success-label">ORDER CREATED</p>
+            <h1>Thank You!</h1>
+            <p>Your demo order has been created successfully.</p>
+            <span class="demo-notice">
+                Demo order only — no real payment or booking has been processed.
+            </span>
+        </div>
+
+        <section class="confirmation-card order-reference">
+            <div>
+                <span class="detail-label">ORDER ID</span>
+                <h2 id="orderId">—</h2>
+            </div>
+            <div>
+                <span class="detail-label">ORDER DATE</span>
+                <strong id="orderDate">—</strong>
+            </div>
+            <div>
+                <span class="detail-label">BOOKING TYPE</span>
+                <strong id="bookingType">—</strong>
+            </div>
+            <div>
+                <span class="detail-label">ORDER STATUS</span>
+                <strong class="status-label">Demo Confirmed</strong>
+            </div>
+        </section>
+
+        <div class="confirmation-grid">
+
+            <div class="confirmation-main">
+
+                <section class="confirmation-card">
+                    <h2>Booking Details</h2>
+                    <div id="confirmedItems" class="confirmed-items"></div>
+                </section>
+
+                <section class="confirmation-card">
+                    <h2>Purchaser Information</h2>
+                    <div class="information-grid">
+                        <div>
+                            <span class="detail-label">Full Name</span>
+                            <strong id="purchaserName">—</strong>
+                        </div>
+                        <div>
+                            <span class="detail-label">Phone Number</span>
+                            <strong id="purchaserPhone">—</strong>
+                        </div>
+                        <div class="full-width">
+                            <span class="detail-label">Email Address</span>
+                            <strong id="purchaserEmail">—</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="confirmation-card" id="recipientCard" hidden>
+                    <h2>Gift Recipient Information</h2>
+                    <div class="information-grid">
+                        <div>
+                            <span class="detail-label">Recipient Name</span>
+                            <strong id="recipientName">—</strong>
+                        </div>
+                        <div>
+                            <span class="detail-label">Phone Number</span>
+                            <strong id="recipientPhone">—</strong>
+                        </div>
+                        <div>
+                            <span class="detail-label">Email Address</span>
+                            <strong id="recipientEmail">—</strong>
+                        </div>
+                        <div>
+                            <span class="detail-label">Address</span>
+                            <strong id="recipientAddress">—</strong>
+                        </div>
+                        <div class="full-width">
+                            <span class="detail-label">Gift Message</span>
+                            <p id="giftMessage">—</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <aside class="confirmation-sidebar">
+                <section class="confirmation-card payment-summary">
+                    <h2>Payment Summary</h2>
+
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <strong id="confirmedSubtotal">৳0</strong>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Service Fee</span>
+                        <strong id="confirmedFees">৳0</strong>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Discount</span>
+                        <strong id="confirmedDiscount">৳0</strong>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <strong id="confirmedTotal">৳0</strong>
+                    </div>
+
+                    <div class="payment-status">
+                        <span>Payment Status</span>
+                        <strong>Demo Only</strong>
+                    </div>
+                </section>
+
+                <section class="confirmation-card">
+                    <h3>What's next?</h3>
+                    <p>This order is stored locally in your browser for demonstration. Actual booking confirmation will require backend and payment integration.</p>
+                </section>
+            </aside>
+
+        </div>
+
+        <div class="confirmation-actions">
+            <a href="index.html" class="confirmation-primary-btn">Continue Exploring</a>
+            <button type="button" id="printOrderBtn" class="confirmation-secondary-btn">
+                Print Order
+            </button>
+        </div>
+
+    </section>
+
+    <section id="noOrderMessage" class="no-order-message" hidden>
+        <h1>No Order Found</h1>
+        <p>There is no recent order to display.</p>
+        <a href="index.html" class="confirmation-primary-btn">Back to Home</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>© 2026 Chalo. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/order-confirmation.js"></script>
+</body>
+</html>
